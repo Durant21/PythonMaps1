@@ -1,0 +1,3 @@
+[run]
+source = PythonMaps1
+omit = PythonMaps1/test*

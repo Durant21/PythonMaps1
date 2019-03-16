@@ -1,0 +1,37 @@
+SiteNumber,SiteName,SiteCategory,SiteAgency,SiteLongitude,SiteLatitude,SiteNWISURL
+08341370,PINE CANYON NR THOREAU_ NM,ST,USGS,-108.1705556,35.30944444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08341370
+08341400,BLUEWATER LAKE NEAR BLUEWATER_ NM,LK,USGS,-108.1115056,35.29258889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08341400
+08343500,RIO SAN JOSE AT ACOMA PUEBLO_ NM,ST,USGS,-107.7511139,35.0744111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08343500
+08331160,RIO GRANDE NEAR BOSQUE FARMS_ NM,ST,USGS,-106.72_34.87055556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08331160
+08329921,CALABACILLAS ARR AT SWINBURNE DAM NR PARADISE HILL,ST,USGS,-106.7053056,35.20504167,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08329921
+083299375,MARIPOSA DIV OF SAN ANTONIO ARR AT ALBQ._ NM,ST,USGS,-106.7047222,35.14,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=083299375
+083299377,San Antonio Arroyo at Rio Grande Confluence in ABQ,ST,USGS,-106.6897222,35.13638889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=083299377
+08330830,RIO GRANDE AT VALLE DE ORO_ NM,ST,USGS,-106.6865556_34.9833333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08330830
+083299395,Rio Grande Nature Center High-Flow Channel@Albq,ST,USGS,-106.685,35.1325,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=083299395
+08330000,RIO GRANDE AT ALBUQUERQUE_ NM,ST,USGS,-106.6806944,35.08916667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08330000
+08330875,RIO GRANDE AT ISLETA LAKES NR ISLETA_ NM,ST,USGS,-106.6802778_34.94666667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08330875
+350249106404810,MCEWAN POND,ST-DCH,USGS,-106.6799056,35.0469222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=350249106404810
+345908106403010,BARR INTERIOR DR BELOW BARR MAIN SPUR NR ABQ,ST-DCH,USGS,-106.6747833_34.985475,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=345908106403010
+345817106402810,BARR INTERIOR DR AT SALIDA SANDIA_NR ALBUQUERQUE_N,ST-DCH,USGS,-106.6746722_34.9717111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=345817106402810
+083299236,BLACK ARR BLW GOLF CRSE RD NR PARADISE HILLS_ NM,ST,USGS,-106.6725271,35.21254234,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=083299236
+08330600,TIJERAS ARROYO NR ALBUQUERQUE_ NM,ST,USGS,-106.6575,35.00194444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08330600
+08330775,SOUTH DIV CHANNEL ABV TIJERAS ARROYO NR ALBQ._ NM,ST,USGS,-106.6572222,35.00277778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08330775
+08329928,RIO GRANDE NR ALAMEDA_ NM,ST,USGS,-106.6519444,35.182,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08329928
+08329926,CALABACILLAS ARROYO BLW COORS BLVD AT ALBQ_ NM,ST,USGS,-106.6513889,35.1875,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08329926
+08330200,SAN JOSE DRAIN AT WOODWARD RD AT ALBQ._ NM,ST,USGS,-106.6486111,35.04888889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08330200
+08329918,RIO GRANDE AT ALAMEDA BRIDGE AT ALAMEDA_ NM,ST,USGS,-106.6427778,35.1977222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08329918
+08329700,CAMPUS WASH AT ALBUQUERQUE_ NM,ST,USGS,-106.6236111,35.09388889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08329700
+08329835,N. FLOODWAY CHANNEL AT ALBUQUERQUE_ NM,ST,USGS,-106.6116667,35.1175,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08329835
+08329884,NORTH PINO ARROYO OUTFALL,ST-CA,USGS,-106.605,35.16744444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08329884
+08329900,NORTH FLOODWAY CHANNEL NEAR ALAMEDA_ NM,ST,USGS,-106.5997222,35.19805556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08329900
+08329870,BEAR ARROYO AT JEFFERSON ST AT ALBQ_ NM,ST,USGS,-106.5977778,35.1508333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08329870
+08329840,HAHN ARROYO IN ALBUQUERQUE_ NM,ST,USGS,-106.5903028,35.12587778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08329840
+350749106345901,NEW MEXICO DISTRICT OFFICE DCP TEST SITE,ST,USGS,-106.5836356,35.13032314,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=350749106345901
+08329880,ACADEMY ACRES DRAIN IN ALBUQUERQUE_ NM,ST,USGS,-106.5730556,35.1511111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08329880
+08329838,SF HAHN ARROYO IN ALBUQUERQUE_ NM,ST,USGS,-106.5677778,35.1211111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08329838
+08329720,EMBUDO ARROYO AT ALBUQUERQUE_ NM,ST,USGS,-106.4925,35.1022222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08329720
+08330400,JUAN TORO CANYON NEAR MIERA_ NM,ST,USGS,-106.3372222,35.0158333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08330400
+08318900,SAN PEDRO CREEK NEAR GOLDEN_ NM,ST,USGS,-106.3002778,35.2286111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08318900
+08488500,CANON DE TORREON AT TORREON_ NM,ST,USGS,-106.2983333_34.72277778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08488500
+08488100,JUAN TOMAS CANYON NEAR EDGEWOOD_ NM,ST,USGS,-106.2297222,35.07638889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08488100
+08379500,PECOS RIVER NEAR ANTON CHICO_ NM,ST,USGS,-105.1088028,35.17866944,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=08379500

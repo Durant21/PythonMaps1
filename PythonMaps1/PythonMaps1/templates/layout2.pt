@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<title>Python Maps</title>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/themes/redmond/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.2/css/ui.jqgrid.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.2/jquery.jqgrid.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+   crossorigin=""/>
+
+     <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+   integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+   crossorigin=""></script>
+
+    <style>
+        #mapid { height: 280px; }
+    </style>
+
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css' rel='stylesheet' />
+
+     <!-- Load Omnivore plugin to convert CSV to GeoJSON format -->
+    <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+
+
+</head>
+
+<script>
+    function getStations() {
+
+
+        //alert('calling...')
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:6543/api/stations",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+
+            beforeSend: function() {
+
+            },
+
+            success: function(data) {
+                jsonObject = data;
+
+                //alert(jsonObject.length)
+
+
+                var myMarker = L.marker([37.10418, -106.6287], {title: "MyPoint", alt: "The Big I", draggable: true})
+                .addTo(map)
+                .on('dragend', function() {
+                    var coord = String(myMarker.getLatLng()).split(',');
+                    console.log(coord);
+                    var lat = coord[0].split('(');
+                    console.log(lat);
+                    var lng = coord[1].split(')');
+                    console.log(lng);
+                    myMarker.bindPopup("Moved to: " + lat[1] + ", " + lng[0] + ".");
+                });
+                myMarker.bindPopup("Moved to: ee");
+
+                var i, t,u,lat, long;
+                u = 0;
+                    for (i = 0; i < jsonObject.length; i++) {
+                        lat  = jsonObject[i]["latitude"];
+                        long = jsonObject[i]["longitude"];
+
+                        myMarker = L.marker([lat,long], {title: "MyPoint", alt: "The Big I", draggable: true})
+                    .addTo(map)
+                        u = u + 1;
+                    }
+
+            alert(u);
+
+            }
+        })
+    }
+</script>
+
+<div id='map' style='width: 400px; height: 300px;'></div>
+<script>
+
+        var options = {
+			center: [35.10418, -106.62987],
+			zoom: 2
+		}
+
+		var map = L.map('map', options);
+
+		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: 'OSM'})
+		.addTo(map);
+
+</script>
+<body>
+
+<h1>Welcome to your new website</h1>
+<p>This is a paragraph.</p>
+<button type="button" onclick="getStations()">Get Map</button>
+<br><br>
+<div id="mapid">map1</div>
+</body>
+</html>
