@@ -5,6 +5,7 @@ import uuid
 import random
 
 from PythonMaps1.data.TSData import TSData
+
 from dateutil.parser import parse
 from PythonMaps1.data.db_factory import DbSessionFactory
 

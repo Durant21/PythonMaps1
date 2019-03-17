@@ -5,9 +5,20 @@ import uuid
 from PythonMaps1.DAL import USGS
 from PythonMaps1.DAL.TS import Repository
 from PythonMaps1.viewmodels.create_ts_viewmodel import CreateTSViewModel
+from PythonMaps1.data.db_factory import DbSessionFactory
+from PythonMaps1.data.TSData import TSData
+
+from PythonMaps1.DAL.USGS import USGS_data
 
 class USGS_data:
     __stations_data={}
+
+    @classmethod
+    def all_ts(cls, limit=None):
+        ts = USGS.USGS_data.all_ts(limit=25)
+
+        return ts
+
 
     @classmethod
     def load_by_HUC(cls, hucs, limit=None):
@@ -72,12 +83,32 @@ class USGS_data:
         # return cls.__people_data.get(person_id)
         #return None
 
-        # session = DbSessionFactory.create_session()
-        #
-        # person = session.query(Person).filter(Person.id == person_id).first()
-        #
-        # session.close()
-        #
-        # return person
+        ts = USGS.USGS_data.ts_by_guid_id(guid_id)
 
-        return None
+        return ts
+
+
+
+    @classmethod
+    def all_ts11(cls, limit=None):
+        # cls.__load_data()
+        #
+        # cars = list(cls.__car_data.values())
+        # if limit:
+        #     cars = cars[:limit]
+        #
+        # return cars
+
+        session = DbSessionFactory.create_session()
+
+        query = session.query(TSData).order_by(TSData.HydroCode)  # .order_by(Teacher.lName)
+
+        if limit:
+            ts = query[:limit]
+        else:
+            ts = query.all()
+
+        session.close()
+
+
+        return ts

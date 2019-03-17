@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup as bs
 from PythonMaps1.data.db_factory import DbSessionFactory
+from PythonMaps1.data.TSData import TSData
+
 
 class USGS_data:
     __stations_data={}
@@ -57,8 +59,32 @@ class USGS_data:
 
         session = DbSessionFactory.create_session()
 
-        person = session.query(Person).filter(Person.id == person_id).first()
+        ts = session.query(TSData).filter(TSData.uuid1 == guid_id).all()#.first()
 
         session.close()
 
-        return person
+        return ts
+
+
+    @classmethod
+    def all_ts(cls, limit=None):
+        # cls.__load_data()
+        #
+        # cars = list(cls.__car_data.values())
+        # if limit:
+        #     cars = cars[:limit]
+        #
+        # return cars
+
+        session = DbSessionFactory.create_session()
+
+        query = session.query(TSData).order_by(TSData.HydroCode)  # .order_by(Teacher.lName)
+
+        if limit:
+            ts = query[:limit]
+        else:
+            ts = query.all()
+
+        session.close()
+
+        return ts

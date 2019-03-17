@@ -24,7 +24,8 @@ class DbSessionFactory:
 
     @classmethod
     def create_session(cls):
-        try:
-            return cls.__session_factory()
-        except Exception as e:
-            print(e)
+        # try:
+        #     return cls.__session_factory()
+        # except Exception as e:
+        #     print(e)
+        return cls.__session_factory()

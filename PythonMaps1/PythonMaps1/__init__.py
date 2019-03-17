@@ -15,9 +15,14 @@ def main(global_config, **settings):
         config.include('pyramid_chameleon')
         init_db( config )
         config.include('.routes')
+
+        configure_renderers( config )
+
+
         config.add_static_view( 'shapes', 'static/shapes' )
         config.add_route( 'stations_api', '/api/stations' )
         config.add_route( 'usgs_api', '/api/usgs' )
+        config.add_route( 'usgs1_api', '/api/usgs1/{guid_id}' )
         # config.add_route( 'station_data_api', '/api/station_data' )
         # config.add_route( 'timeseries_data_api', '/api/timeseries_data' )
         config.scan()
@@ -29,3 +34,9 @@ def init_db(config):
     db_file = settings.get('db_filename')
 
     DbSessionFactory.global_init(db_file)
+
+
+def configure_renderers(config):
+    json_renderer = JSON(indent=4)
+    json_renderer.add_adapter(TSData, lambda c, _: c.to_dict())
+    config.add_renderer('json', json_renderer)

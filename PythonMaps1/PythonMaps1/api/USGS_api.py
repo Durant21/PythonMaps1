@@ -10,20 +10,28 @@ from PythonMaps1.data.repository_station_data import Repository_station_data
 from PythonMaps1.data.repository_timeseries_data import Repository_timeseries_data
 
 
+# @view_config(route_name='usgs_api',
+#              request_method='GET',
+#              accept='application/json',
+#              renderer='json')
+# def get_usgs_timeseries_by_guid(_):
+#     # stations = Repository_stations.all_stations(limit=25)
+#     # huc_id = Request.matchdict.get( 'huc_id' )
+#     huc_id = "04010101"
+#     data = USGS_data.load_by_HUC( hucs=huc_id )
+#
+#     return data
+
 @view_config(route_name='usgs_api',
              request_method='GET',
              accept='application/json',
              renderer='json')
-def get_usgs_timeseries_by_guid(_):
-    # stations = Repository_stations.all_stations(limit=25)
-    # huc_id = Request.matchdict.get( 'huc_id' )
-    huc_id = "04010101"
-    # data = USGS_data.load_by_HUC( huc=huc_id )
-
-    return huc_id
+def all_ts(_):
+    ts = USGS_data.all_ts(limit=25)
+    return ts
 
 
-@view_config(route_name='usgs_api',
+@view_config(route_name='usgs1_api',
              request_method='GET',
              renderer='json')
 def get_usgs_timeseries_by_guid(request: Request):

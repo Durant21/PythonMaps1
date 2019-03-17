@@ -36,23 +36,10 @@ class TSData(SqlAlchemyBase):
 
     def to_dict(self):
         return {
-        # 'fname': self.fname,
-        # 'title': self.title,
-        # 'date_created': self.date_created.isoformat(),
-        'ts_id': self.ts_id,
-        'agency_cd': self.agency_cd,
-        'HydroCode': self.HydroCode,
-        'TSDateTime': self.TSDateTime.isoformat(),
-        'TSValue': self.TSValue,
-        'uuid1': self.uuid1
-        # 'Qualified': self.Qualified,
-        # 'Param': self.Param,
-        # 'TS_duplcts': self.TS_duplcts,
-        # 'TSTypeID': self.TSTypeID,
-        # 'FeatureID': self.FeatureID,
-        # 'TSRemarks': self.TSRemarks,
-        # 'TSComments': self.TSComments,
-        # 'BaseVsEvent': self.BaseVsEvent,
-        # 'Transferable': self.Transferable,
-        # 'source1': self.source1
+            'ts_id': self.ts_id,
+            'agency_cd': self.agency_cd,
+            'HydroCode': self.HydroCode,
+            'TSDateTime': self.TSDateTime.isoformat(),
+            'TSValue': self.TSValue,
+            'uuid1': self.uuid1,
         }
