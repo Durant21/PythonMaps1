@@ -50,13 +50,20 @@ def get_usgs_timeseries_by_guid(request: Request):
              renderer='json')
 def load_usgs_timeseries_by_huc(request: Request):
     try:
-        person_data = request.json_body
+        hucs_list = request.json_body
     except:
         return Response(status=400, body='Could not parse your post as JSON.')
 
     # stations = Repository_stations.all_stations(limit=25)
     # huc_id = Request.matchdict.get( 'huc_id' )
     # huc_id = "04010101"
-    data = USGS_data.load_by_HUC( hucs=person_data['huc_id'] )
 
-    return None
+    guid_id = USGS_data.load_by_HUC( hucs=hucs_list['huc_id'] )
+
+    ts = USGS_data.ts_by_guid_id(guid_id)
+
+    if not ts:
+        msg = "The guid with id '{}' was not found.".format(guid_id)
+        return Response(status=404,json_body={'error:': msg})
+
+    return ts

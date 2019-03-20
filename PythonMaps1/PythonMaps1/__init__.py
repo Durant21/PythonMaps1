@@ -23,6 +23,7 @@ def main(global_config, **settings):
         config.add_route( 'stations_api', '/api/stations' )
         config.add_route( 'usgs_api', '/api/usgs' )
         config.add_route( 'usgs1_api', '/api/usgs1/{guid_id}' )
+        config.add_route( 'hucs_api', '/api/hucs' )
         # config.add_route( 'station_data_api', '/api/station_data' )
         # config.add_route( 'timeseries_data_api', '/api/timeseries_data' )
         config.scan()

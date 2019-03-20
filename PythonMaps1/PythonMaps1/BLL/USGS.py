@@ -71,10 +71,13 @@ class USGS_data:
             print('done')
 
             # if the data was loaded, pull it from the BD
-            data = USGS.USGS_data.get_by_session(session_guid=result_guid)
+            # data = USGS.USGS_data.get_by_session(session_guid=uuid1)
+            data = USGS_data.ts_by_guid_id( uuid1 )
             if limit:
                 data=data[:limit]
                 return data
+
+            return uuid1
 
 
     @classmethod

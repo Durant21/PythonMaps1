@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup as bs
 from PythonMaps1.data.db_factory import DbSessionFactory
 from PythonMaps1.data.TSData import TSData
-
+import lxml
 
 class USGS_data:
     __stations_data={}
