@@ -24,7 +24,6 @@ class USGS_data:
     def load_by_HUC(cls, hucs, limit=None):
         # cls.__load_data()
         # stations=list(cls.__stations_data.values())
-        r = uuid.uuid4()
 
         uuid1 = str( uuid.uuid4())
 
