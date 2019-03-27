@@ -3,6 +3,51 @@ import csv
 import os
 import uuid
 
+from PythonMaps1.data.db_factory import DbSessionFactory
+from PythonMaps1.data.HUCs import HUCs
+from dateutil.parser import parse
+
+
+class Repository:
+    @classmethod
+    def add_huc(cls, ts):
+        # cls.__load_data()
+        # key = str(uuid.uuid4())
+        # car_data['id'] = key
+        # cls.__car_data[key] = car_data
+        #
+        # return car_data
+
+        try:
+
+
+            session1 = DbSessionFactory.create_session()
+
+            a = 12
+            db_hucs = HUCs()
+            db_hucs.huc_id = ts.huc_id
+            db_hucs.state1 = ts.state1  #parse(ts.TSDateTime)  # parse(teacher.certdate)
+            db_hucs.state2 = ts.state2
+            db_hucs.huc_name = ts.huc_name
+            db_hucs.desc = ts.desc
+            # db_hucs.uuid1 = ts.uuid1
+            # db_car.image = car.image if car.image else random.choice(cls.__fake_image_url)
+            #db_ts.year = ts.year
+            # db_car.teacherId = int(teacher.year)
+            #db_ts.price = int( ts.price )
+
+
+            session1.add( db_hucs )
+
+            session1.commit()
+
+            return db_hucs
+
+        except Exception as e:
+            print( e )  # for the repr
+        # ...     print 'My exception occurred, value:', e.value
+
+
 class hucs_data:
     __hucs_data={}
 
@@ -16,6 +61,20 @@ class hucs_data:
             return hucs
         else:
             return hucs
+
+    @classmethod
+    def hucs_by_state(cls, state_name,limit):
+        # cls.__load_data()
+        # return cls.__car_data.get(car_id)
+
+        session = DbSessionFactory.create_session()
+
+        hucs = session.query(HUCs).filter(HUCs.state2 == state_name).all()#.first()
+
+        session.close()
+
+        return hucs
+
 
     @classmethod
     def __load_data(cls):
