@@ -86,6 +86,54 @@
         buildChart_StationTimeseries();
     }
 
+    function getUrlBase() {
+        return "http://localhost:6543/"
+    }
+
+    function getHUCSbyState(sState) {
+        var s = "not done";
+        $.ajax({
+            type: "POST",
+            url: getUrlBase() + "/api/hucs",
+            data: "{'state2': 'MN'}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+
+            beforeSend: function () {
+                //SetBusy();
+            },
+
+            success: function (data) {
+                //SetNotBusy();
+                //var parsedTest = JSON.parse(data); //an array [1,2]
+
+                var jsonObj = $.parseJSON(data);
+                //var jsonObjs = JSON.stringify(data);
+                //for (var i = 0; i <= 145; i++) {
+                    //jQuery("#TSGridView").jqGrid('delRowData', i + 1);
+                //}
+
+                // myViewModel.dbBudgetYears(jsonObj);
+                //
+                // if (sSetYear != "") {
+                //     var element = document.getElementById('lstHUCs');
+                //     element.value = sSetYear;
+                // }
+
+                s = "done";
+
+            },
+
+            error: function (err) {
+                SetNotBusy();
+                alert("18Error : " + err.status + "   " + err.statusText);
+            }
+
+        });
+
+        return s;
+};
+
 
     function getStationsForMap() {
 
@@ -323,8 +371,6 @@
 
     }
 
-
-
     function drawchart_TimeSeries(dataValues) {
         // Callback that creates and populates a data table,
         // instantiates the pie chart, passes in the data and
@@ -444,7 +490,7 @@
               <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">HUCs
                 <span class="caret"></span></button>
-                <ul class="dropdown-menu">
+                <ul id="lstHUCs" class="dropdown-menu">
                   <li><a href="#">HTML</a></li>
                   <li><a href="#">CSS</a></li>
                   <li><a href="#">JavaScript</a></li>
@@ -598,6 +644,10 @@
         //
 		// L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: 'OSM'})
 		// .addTo(map);
+
+        // populate dropdowns
+        getHUCSbyState()
+
     }
 
     function centerAndZoom(_x,_y) {

@@ -43,12 +43,10 @@
     <index id="14" parent="6" name="sqlite_autoindex_TSData_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ts_id</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <index id="15" parent="6" name="ix_TSData_TSDateTime">
       <ColNames>TSDateTime</ColNames>
-      <ColumnCollations></ColumnCollations>
     </index>
     <key id="16" parent="6">
       <ColNames>ts_id</ColNames>
