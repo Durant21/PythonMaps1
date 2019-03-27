@@ -5,6 +5,7 @@
     <list default="true" id="7f586029-876d-481a-8065-4b9bb8829a73" name="Default Changelist" comment="" />
 =======
     <list default="true" id="7f586029-876d-481a-8065-4b9bb8829a73" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/.idea/dataSources/12d6713a-a5ce-4f27-83ed-049f373119bd.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/dataSources/12d6713a-a5ce-4f27-83ed-049f373119bd/storage_v2/_src_/schema/main.uQUzAA.meta" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/dataSources/140a0f34-def6-4528-b47d-12617f9cdcd0.xml" afterDir="false" />
@@ -29,6 +30,16 @@
       <change beforePath="$PROJECT_DIR$/PythonMaps1/api/stations_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/PythonMaps1/api/stations_api.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PythonMaps1/db/USGS.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/PythonMaps1/db/USGS.sqlite" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PythonMaps1/templates/layout5.pt" beforeDir="false" afterPath="$PROJECT_DIR$/PythonMaps1/templates/layout5.pt" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/PythonMaps1/config1a.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PythonMaps1/database.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PythonMaps1/test_postgres.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/pip-selfcheck.json" beforeDir="false" afterPath="$PROJECT_DIR$/.env/pip-selfcheck.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7730b630-437c-4e77-8300-7751e780ed2e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7730b630-437c-4e77-8300-7751e780ed2e.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PythonMaps1/templates/layout5.pt" beforeDir="false" afterPath="$PROJECT_DIR$/PythonMaps1/templates/layout5.pt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/development.ini" beforeDir="false" afterPath="$PROJECT_DIR$/development.ini" afterDir="false" />
+>>>>>>> 032619_add_Postgres_CRUD
     </list>
 >>>>>>> 032019_AddHUCsToDB
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,11 +52,16 @@
     <SUITE FILE_PATH="coverage/PythonMaps1$USGS.coverage" NAME="USGS Coverage Results" MODIFIED="1552070049853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PythonMaps1/DAL" />
     <SUITE FILE_PATH="coverage/PythonMaps1$test1.coverage" NAME="test1 Coverage Results" MODIFIED="1552370892453" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PythonMaps1" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <SUITE FILE_PATH="coverage/PythonMaps1$PythonMaps1.coverage" NAME="PythonMaps1 Coverage Results" MODIFIED="1553728945687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PythonMaps1$test_postgres.coverage" NAME="test_postgres Coverage Results" MODIFIED="1553728718796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PythonMaps1" />
 =======
     <SUITE FILE_PATH="coverage/PythonMaps1$PythonMaps1.coverage" NAME="PythonMaps1 Coverage Results" MODIFIED="1553463867587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
 >>>>>>> 032019_AddHUCsToDB
+=======
+    <SUITE FILE_PATH="coverage/PythonMaps1$PythonMaps1.coverage" NAME="PythonMaps1 Coverage Results" MODIFIED="1553728945687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PythonMaps1$test_postgres.coverage" NAME="test_postgres Coverage Results" MODIFIED="1553728718796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PythonMaps1" />
+>>>>>>> 032619_add_Postgres_CRUD
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -95,12 +111,27 @@
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
 <<<<<<< HEAD
+<<<<<<< HEAD
+        <entry file="file://$PROJECT_DIR$/PythonMaps1/templates/template1.pt">
+          <provider selected="true" editor-type-id="text-editor" />
+=======
         <entry file="file://$PROJECT_DIR$/PythonMaps1/templates/template1.pt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PythonMaps1/test_postgres.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" column="25" lean-forward="true" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+            </state>
+          </provider>
+>>>>>>> 032619_add_Postgres_CRUD
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PythonMaps1/templates/layout1.pt">
+<<<<<<< HEAD
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="304">
               <caret line="37" selection-start-line="37" selection-end-line="42" />
@@ -112,10 +143,16 @@
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
+=======
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="37" selection-start-line="37" selection-end-line="42" />
+>>>>>>> 032619_add_Postgres_CRUD
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PythonMaps1/test_postgres.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -133,20 +170,32 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PythonMaps1/templates/template5.pt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+>>>>>>> 032619_add_Postgres_CRUD
         <entry file="file://$PROJECT_DIR$/PythonMaps1/routes.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
               <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+<<<<<<< HEAD
 =======
         <entry file="file://$PROJECT_DIR$/PythonMaps1/routes.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
               <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+=======
+>>>>>>> 032619_add_Postgres_CRUD
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/PythonMaps1/views/default.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
@@ -163,10 +212,18 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+=======
+        <entry file="file://$PROJECT_DIR$/PythonMaps1/views/notfound.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+>>>>>>> 032619_add_Postgres_CRUD
         <entry file="file://$PROJECT_DIR$/PythonMaps1/views/default.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
               <caret line="9" column="16" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+<<<<<<< HEAD
 =======
         <entry file="file://$PROJECT_DIR$/PythonMaps1/templates/template5.pt">
           <provider selected="true" editor-type-id="text-editor" />
@@ -182,11 +239,29 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="3412">
               <caret line="237" column="24" lean-forward="true" selection-start-line="237" selection-start-column="24" selection-end-line="237" selection-end-column="24" />
+=======
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PythonMaps1/templates/layout5.pt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="648" column="24" selection-start-line="648" selection-start-column="24" selection-end-line="648" selection-end-column="24" />
+              <folding>
+                <element signature="e#3287#8541#0#HTML" />
+                <element signature="e#8675#10958#0#HTML" />
+                <element signature="e#11022#11922#0#HTML" />
+                <element signature="e#11972#14150#0#HTML" />
+              </folding>
+>>>>>>> 032619_add_Postgres_CRUD
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/PythonMaps1/viewmodels/create_station_viewmodel.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="390">
@@ -195,6 +270,12 @@
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
 >>>>>>> 032019_AddHUCsToDB
+=======
+        <entry file="file://$PROJECT_DIR$/PythonMaps1/config1a.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
+>>>>>>> 032619_add_Postgres_CRUD
             </state>
           </provider>
         </entry>
@@ -209,8 +290,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PythonMaps1/viewmodels/create_ts_viewmodel.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="23">
               <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+=======
+            <state relative-caret-position="255">
+              <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+>>>>>>> 032619_add_Postgres_CRUD
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -276,12 +362,17 @@
       <find>getStationsForMap</find>
       <find>about</find>
       <find>hucs</find>
+<<<<<<< HEAD
       <find>other</find>
       <find>xs-6</find>
       <find>volvo</find>
       <find>submit</find>
       <find>submit q</find>
       <find>query</find>
+=======
+      <find>onload</find>
+      <find>post</find>
+>>>>>>> 032619_add_Postgres_CRUD
     </findStrings>
     <replaceStrings>
       <replace>,</replace>
@@ -319,7 +410,6 @@
         <option value="$PROJECT_DIR$/PythonMaps1/viewmodels/base_viewmodel.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/bcbabf1d-43ca-44fa-99d5-c6dfab553efb/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/77785dd9-a108-40da-9a49-6f94369b3852/console.sql" />
-        <option value="$PROJECT_DIR$/development.ini" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/d684bc42-4cb4-4877-ae4d-821e7742e3f0/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/d8f262ec-9d9f-4a05-abd4-7736daf143b7/console.sql" />
         <option value="$PROJECT_DIR$/PythonMaps1/viewmodels/create_ts_viewmodel.py" />
@@ -341,10 +431,19 @@
         <option value="$PROJECT_DIR$/PythonMaps1/BLL/HUCs.py" />
         <option value="$PROJECT_DIR$/PythonMaps1/api/HUCs_api.py" />
         <option value="$PROJECT_DIR$/PythonMaps1/__init__.py" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/PythonMaps1/DAL/stations.py" />
         <option value="$PROJECT_DIR$/PythonMaps1/BLL/USGS.py" />
         <option value="$PROJECT_DIR$/PythonMaps1/api/stations_api.py" />
         <option value="$PROJECT_DIR$/PythonMaps1/BLL/stations.py" />
+=======
+        <option value="$PROJECT_DIR$/PythonMaps1/DAL/hucs.py" />
+        <option value="$PROJECT_DIR$/PythonMaps1/config.py" />
+        <option value="$PROJECT_DIR$/development.ini" />
+        <option value="$PROJECT_DIR$/PythonMaps1/database.py" />
+        <option value="$PROJECT_DIR$/PythonMaps1/config1a.py" />
+        <option value="$PROJECT_DIR$/PythonMaps1/database.ini" />
+>>>>>>> 032619_add_Postgres_CRUD
         <option value="$PROJECT_DIR$/PythonMaps1/templates/layout5.pt" />
         <option value="$PROJECT_DIR$/PythonMaps1/test_postgres.py" />
       </list>
@@ -383,6 +482,7 @@
               <item name="PythonMaps1" type="462c0819:PsiDirectoryNode" />
               <item name="PythonMaps1" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
             </path>
             <path>
               <item name="PythonMaps1" type="b2602c69:ProjectViewProjectNode" />
@@ -401,6 +501,8 @@
               <item name="PythonMaps1" type="462c0819:PsiDirectoryNode" />
               <item name="PythonMaps1" type="462c0819:PsiDirectoryNode" />
               <item name="viewmodels" type="462c0819:PsiDirectoryNode" />
+=======
+>>>>>>> 032619_add_Postgres_CRUD
             </path>
             <path>
               <item name="PythonMaps1" type="b2602c69:ProjectViewProjectNode" />
@@ -502,6 +604,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test_postgres" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="PythonMaps1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PythonMaps1" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PythonMaps1/test_postgres.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="PythonMaps1" type="Python.PyramidServer" factoryName="Pyramid server">
       <module name="PythonMaps1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -541,9 +665,11 @@
       <item itemvalue="Python.test1" />
       <item itemvalue="Pyramid server.PythonMaps1" />
       <item itemvalue="Python tests.Tests in setup.py" />
+      <item itemvalue="Python.test_postgres" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test_postgres" />
         <item itemvalue="Python.test1" />
         <item itemvalue="Python.USGS" />
       </list>
@@ -564,16 +690,25 @@
       <workItem from="1551929083374" duration="61039000" />
       <workItem from="1552756431951" duration="617000" />
       <workItem from="1552757069415" duration="391000" />
+<<<<<<< HEAD
       <workItem from="1552757937630" duration="57768000" />
+=======
+      <workItem from="1552757937630" duration="23500000" />
+      <workItem from="1553638263555" duration="5848000" />
+>>>>>>> 032619_add_Postgres_CRUD
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="143792000" />
 =======
     <option name="totallyTimeSpent" value="178055000" />
 >>>>>>> 032019_AddHUCsToDB
+=======
+    <option name="totallyTimeSpent" value="149635000" />
+>>>>>>> 032619_add_Postgres_CRUD
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -588,16 +723,24 @@
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <layout>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23101777" />
 =======
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18012924" />
 >>>>>>> 032019_AddHUCsToDB
+=======
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23101777" />
+>>>>>>> 032619_add_Postgres_CRUD
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Database Console" order="0" weight="0.5780822" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32876712" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Run" order="3" weight="0.21506849" />
+=======
+      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.21506849" />
+>>>>>>> 032619_add_Postgres_CRUD
       <window_info anchor="bottom" id="Debug" order="4" weight="0.29726028" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -615,9 +758,12 @@
 <<<<<<< HEAD
       <window_info anchor="right" id="Database" order="4" weight="0.19951534" />
       <window_info anchor="right" id="Coverage" order="5" side_tool="true" />
+<<<<<<< HEAD
 =======
       <window_info anchor="right" id="Database" order="4" visible="true" weight="0.19951534" />
 >>>>>>> 032019_AddHUCsToDB
+=======
+>>>>>>> 032619_add_Postgres_CRUD
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -726,6 +872,11 @@
           <line>42</line>
           <option name="timeStamp" value="115" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/PythonMaps1/test_postgres.py</url>
+          <line>27</line>
+          <option name="timeStamp" value="92" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -737,6 +888,7 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/.env/lib/python3.7/site-packages/pyramid-1.10.1-py3.7.egg/pyramid/router.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -806,6 +958,9 @@
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/140a0f34-def6-4528-b47d-12617f9cdcd0/console.sql">
+=======
+    <entry file="file://$PROJECT_DIR$/PythonMaps1/data/sqlalchemy_base.py">
+>>>>>>> 032619_add_Postgres_CRUD
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="20" lean-forward="true" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
@@ -893,6 +1048,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/PythonMaps1/data/stations.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="855">
@@ -914,6 +1070,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PythonMaps1/BLL/HUCs.py">
+=======
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7730b630-437c-4e77-8300-7751e780ed2e/console.sql">
+>>>>>>> 032619_add_Postgres_CRUD
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-column="44" />
@@ -991,6 +1150,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/.env/lib/python3.7/site-packages/pyramid-1.10.1-py3.7.egg/pyramid/viewderivers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="155">
@@ -999,6 +1159,12 @@
       </provider>
     </entry>
     <entry file="file:///anaconda3/lib/python3.7/uuid.py">
+=======
+    <entry file="file://$PROJECT_DIR$/PythonMaps1/data/cities.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonMaps1/data/Stations_CentralNM.csv">
+>>>>>>> 032619_add_Postgres_CRUD
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
           <caret line="741" selection-start-line="741" selection-end-line="741" />
@@ -1071,6 +1237,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/PythonMaps1/templates/layout5.pt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="458">
@@ -1096,6 +1263,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3412">
           <caret line="237" column="24" lean-forward="true" selection-start-line="237" selection-start-column="24" selection-end-line="237" selection-end-column="24" />
+=======
+    <entry file="file://$PROJECT_DIR$/PythonMaps1/api/USGS_api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+          <folding>
+            <element signature="e#1#36#0" expanded="true" />
+          </folding>
+>>>>>>> 032619_add_Postgres_CRUD
         </state>
       </provider>
     </entry>
@@ -1111,14 +1287,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PythonMaps1/viewmodels/create_ts_viewmodel.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="23">
           <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+=======
+        <state relative-caret-position="750">
+          <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="8" />
+>>>>>>> 032619_add_Postgres_CRUD
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/PythonMaps1/BLL/USGS.py">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
@@ -1130,14 +1312,140 @@
 >>>>>>> 032019_AddHUCsToDB
           <folding>
             <element signature="e#0#10#0" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/PythonMaps1/BLL/HUCs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="46" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonMaps1/DAL/stations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+          <folding>
+            <element signature="e#1#11#0" expanded="true" />
+>>>>>>> 032619_add_Postgres_CRUD
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/PythonMaps1/test_postgres.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+=======
+    <entry file="file://$PROJECT_DIR$/PythonMaps1/data/station.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonMaps1/data/HUCs_csv.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///anaconda3/lib/python3.7/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4965">
+          <caret line="332" selection-start-line="332" selection-end-line="332" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonMaps1/DAL/hucs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="51" column="42" selection-start-line="51" selection-start-column="42" selection-end-line="51" selection-end-column="42" />
+          <folding>
+            <element signature="e#1#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/production.ini">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/development.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="63" selection-start-line="63" selection-end-line="67" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonMaps1/database.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonMaps1/config1a.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonMaps1/templates/layout1.pt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="37" selection-start-line="37" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonMaps1/templates/template5.pt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonMaps1/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+>>>>>>> 032619_add_Postgres_CRUD
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonMaps1/routes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonMaps1/views/notfound.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonMaps1/views/default.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="16" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonMaps1/templates/layout5.pt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="648" column="24" selection-start-line="648" selection-start-column="24" selection-end-line="648" selection-end-column="24" />
+          <folding>
+            <element signature="e#3287#8541#0#HTML" />
+            <element signature="e#8675#10958#0#HTML" />
+            <element signature="e#11022#11922#0#HTML" />
+            <element signature="e#11972#14150#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonMaps1/templates/template1.pt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonMaps1/test_postgres.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="25" lean-forward="true" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
         </state>
       </provider>
     </entry>
