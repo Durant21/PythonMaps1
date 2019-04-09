@@ -69,7 +69,15 @@ class hucs_data:
 
         session = DbSessionFactory.create_session()
 
-        hucs = session.query(HUCs).filter(HUCs.state2 == state_name).all()#.first()
+        hucs1 = session.query(HUCs).filter(HUCs.state2 == state_name).all()
+        # hucs2 = session.query.distinct( HUCs.huc_name ).limit( 5 )
+
+        hucs = session.query( HUCs.huc_name ). \
+            filter( HUCs.state2 == state_name ). \
+            distinct(HUCs.huc_name). \
+            all()
+
+        #.first()
 
         session.close()
 

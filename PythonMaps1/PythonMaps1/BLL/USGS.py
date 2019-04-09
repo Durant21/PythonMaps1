@@ -21,7 +21,7 @@ class USGS_data:
 
 
     @classmethod
-    def load_by_HUC(cls, hucs, limit=None):
+    def load_by_HUC(cls, hucs,date_from,date_to, limit=None):
         # cls.__load_data()
         # stations=list(cls.__stations_data.values())
 
@@ -30,19 +30,29 @@ class USGS_data:
         lst_hucs = hucs.split(',')
 
         for huc in lst_hucs:
-            result_guid = USGS.USGS_data.usgs_load_by_HUC( huc )
+            result_guid = USGS.USGS_data.usgs_load_by_HUC( huc,date_from,date_to,limit )
 
             for line in result_guid: # you iterate through the list, and print the single lines
                 t = line.split()
-                if (t):
-                    if (t[0] != '#'):
+                if t:
+                    if t[0] != '#' and t[0] != 'No':
                         print( line )
                         sentence_dict = {}
                         sentence_dict.update( {'agency_cd': t[0]} )
                         sentence_dict.update( {'HydroCode': t[1]} )
                         # sentence_dict.update( {'ts_id': '22222'} )
                         sentence_dict.update( {'TSDateTime': t[2]} )
-                        sentence_dict.update( {'TSValue': t[3]} )
+
+                        try:
+                            sentence_dict.update( {'TSValue': t[3]} )
+                        except (IndexError, ValueError):
+                            sentence_dict.update( {'TSValue': '0'} )
+
+                        # if t[3]:
+                        #     sentence_dict.update( {'TSValue': t[3]} )
+                        # else:
+                        #     sentence_dict.update( {'TSValue': '0'} )
+
                         sentence_dict.update( {'uuid1': uuid1} )
                         ee = 1
 
@@ -67,16 +77,16 @@ class USGS_data:
             # TODO insert into local DB
 
 
-            print('done')
+        print('done')
 
-            # if the data was loaded, pull it from the BD
-            # data = USGS.USGS_data.get_by_session(session_guid=uuid1)
-            data = USGS_data.ts_by_guid_id( uuid1 )
-            if limit:
-                data=data[:limit]
-                return data
+        # if the data was loaded, pull it from the BD
+        # data = USGS.USGS_data.get_by_session(session_guid=uuid1)
+        data = USGS_data.ts_by_guid_id( uuid1 )
+        if limit:
+            data=data[:limit]
+            return data
 
-            return uuid1
+        return uuid1
 
 
     @classmethod

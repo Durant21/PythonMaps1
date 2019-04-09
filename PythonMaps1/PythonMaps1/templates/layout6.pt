@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <!--?   grid   -->
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/themes/redmond/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.2/css/ui.jqgrid.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.2/jquery.jqgrid.min.js"></script>
+
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+
+  .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      margin: auto;
+      min-height:200px;
+  }
+
+  /* Hide the carousel text when the screen is less than 600 pixels wide */
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none;
+    }
+  }
+  </style>
+
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/themes/redmond/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.2/css/ui.jqgrid.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.2/jquery.jqgrid.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+   crossorigin=""/>
+
+     <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+   integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+   crossorigin=""></script>
+
+    <style>
+        #mapid { height: 280px; }
+
+        .form-control {
+            width: 100px;
+        }
+    </style>
+
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css' rel='stylesheet' />
+
+     <!-- Load Omnivore plugin to convert CSV to GeoJSON format -->
+    <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+
+    <!--?charting libraries-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+
+    <!--?knockout-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+    <!--?date picker-->
+     <!--? source:  https://jqueryui.com/datepicker/#default  -->
+  <!--?<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
+  <!--?<link rel="stylesheet" href="/resources/demos/style.css">-->
+  <!--?<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+      $( function() {
+        //$( "#datepicker" ).datepicker();
+        $( "#txtDateFrom" ).datepicker();
+        $( "#txtDateTo" ).datepicker();
+      } );
+  </script>
+
+</head>
+
+<script type="text/javascript">
+    google.load("visualization","1",{packages: ["corechart"]});
+</script>
+
+
+<script>
+    function getMapAndTable() {
+        getStationsForMap();
+        getStationsForTable();
+        buildChart_StationTimeseries();
+    }
+
+    function getUrlBase() {
+        return "http://localhost:6543/"
+    }
+
+
+
+    function getStationsForMap() {
+
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:6543/api/stations",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+
+            beforeSend: function() {
+
+            },
+
+            success: function(data) {
+                jsonObject = data;
+
+                // var myMarker = L.marker([37.10418, -106.6287], {title: "MyPoint", alt: "The Big I", draggable: true})
+                // .addTo(map)
+                // .on('dragend', function() {
+                //     var coord = String(myMarker.getLatLng()).split(',');
+                //     console.log(coord);
+                //     var lat = coord[0].split('(');
+                //     console.log(lat);
+                //     var lng = coord[1].split(')');
+                //     console.log(lng);
+                //     myMarker.bindPopup("Moved to: " + lat[1] + ", " + lng[0] + ".");
+                // });
+                // myMarker.bindPopup("Moved to: ee");
+
+
+                var options = {
+                	center: [35.10418, -106.62987],
+                	zoom: 2
+                }
+
+                //var map = L.map('map', options);
+
+                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: 'OSM'})
+                .addTo(map);
+
+                // Load CSV point data
+                var myMarker;
+                var options1 = {
+                        center: [35.10418, -106.62987],
+                        zoom: 2
+                    }
+
+                    if (map == null){
+                       var map1 = L.map('map', options1);
+                    }
+
+
+                var i, t,u,lat, long;
+                u = 0;
+                    for (i = 0; i < jsonObject.length; i++) {
+                        lat  = jsonObject[i]["SiteLatitude"];
+                        long = jsonObject[i]["SiteLongitude"];
+
+
+                         if (isNaN(lat) || isNaN(long)) {
+                            //document.write(num1 + " is not a number <br/>");
+
+                         } else {
+                            //document.write(num1 + " is a number <br/>");
+                            myMarker = L.marker([lat,long], {title: "MyPoint", alt: "The Big I", draggable: true})
+                             .addTo(map)
+                         }
+
+
+                        u = u + 1;
+                    }
+
+
+                    var myLines = [{
+                        "type": "LineString",
+                        "coordinates": [[-100, 40], [-105, 45], [-110, 55]]
+                    }, {
+                        "type": "LineString",
+                        "coordinates": [[-105, 40], [-110, 45], [-115, 55]]
+                    }];
+
+                    var myStyle = {
+                        "color": "#ff7800",
+                        "weight": 5,
+                        "opacity": 0.65
+                    };
+
+                    // L.geoJSON(myLines, {
+                    //     style: myStyle
+                    // }).addTo(map);
+
+                    var highlight = {
+                        'color': '#333333',
+                        'weight': 2,
+                        'opacity': 1
+                    };
+
+                    var t = map._layers;//['name'+LayerID].setStyle(highlight);
+                    // map._layers[81].setS(highlight);
+                    // var o = map._layers["_leaflet_id"] = 81;
+
+
+                    // Load geojson files
+                    var geojsonLayer1 = new L.GeoJSON.AJAX("/static/shapes/NHDFlowLine_sub.geojson", {onEachFeature:popUp});
+                    //geojsonLayer1.addTo(map);
+
+                    var geojsonLayer2 = new L.GeoJSON.AJAX("/static/shapes/NHDFlowLine_sub2.geojson", {onEachFeature:popUp});
+                    //geojsonLayer2.addTo(map);
+
+                    var geojsonLayer3 = new L.GeoJSON.AJAX("/static/shapes/NHDFlowLine_sub3.geojson", {onEachFeature:popUp});
+                    //geojsonLayer3.addTo(map);
+
+                    var geojsonLayer4 = new L.GeoJSON.AJAX("/static/shapes/NHDFlowLine_sub4.geojson", {onEachFeature:popUp});
+                    //geojsonLayer4.addTo(map);
+
+                    var geojsonLayer5 = new L.GeoJSON.AJAX("/static/shapes/NHDFlowLine_sub5.geojson", {onEachFeature:popUp});
+                    //geojsonLayer5.addTo(map);
+
+
+                    // Load GeoServer layer
+                      // var wmsLayer = L.tileLayer.wms('http://localhost:8080/geoserver/RGIS/wms?', {
+                      //       layers: 'RGIS:tl_2010_35_county10',
+                      //       transparency: 'true',
+                      //       format: 'image/png',
+                      //       maxZoom: 21,
+                      //       opacity: 0.5
+                      //   }).addTo(map);
+
+                    // Load GeoServer-PostGIS layer
+                      var wmsLayer2 = L.tileLayer.wms('http://localhost:8080/geoserver/RGIS/wms?', {
+                            layers: 'NaturalEarth:council5',
+                            format: 'image/png',
+                            version: '1.1.0',
+                          tms: 'true',
+                            attribution: "myattribution"
+                        }).addTo(map);
+            //alert(u);
+
+            }
+        })
+    }
+
+     function popUp(feature, layer) {
+        layer.bindPopup(feature.properties.name);
+      }
+
+    function getStationsForTable() {
+
+        var grid = jQuery("#grid_stations").jqGrid({
+            // datatype: "json",
+            // contentType: "application/json; charset=utf-8",
+            width: 600,
+            //scrollerbar: true,
+            height: 175,
+            colNames: ['SiteNumber','SiteName','SiteCategory','SiteAgency','SiteLongitude','SiteLatitude','SiteNWISURL'],
+            colModel: [
+                { name: 'SiteNumber', index: 'SiteNumber', width: 100, align: 'right'},
+                { name: 'SiteName', index: 'SiteName', width: 100, align: 'right'},
+                { name: 'SiteCategory', index: 'SiteCategory', width: 100, align: 'right'},
+                { name: 'SiteAgency', index: 'SiteAgency', width: 100, align: 'right'},
+                { name: 'SiteLongitude', index: 'SiteLongitude', width: 100, align: 'right'},
+                { name: 'SiteLatitude', index: 'SiteLatitude', width: 100, align: 'right'},
+                { name: 'SiteNWISURL', index: 'SiteNWISURL', width: 100, align: 'right'}
+                ],
+            multiselect: false,
+            ondblClickRow: function(stationid) {
+                //alert("You double click row with stationid: "+stationid);
+                var data = jQuery("#grid_stations").jqGrid('getRowData',stationid);
+                //alert("Status ->"+data.stationid);
+                var _lat = data.SiteLatitude;
+                var _lon = data.SiteLongitude;
+                centerAndZoom(_lat,_lon);
+                },
+            caption: "Stations"
+        })
+
+
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:6543/api/stations",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+
+            beforeSend: function() {
+
+            },
+
+            success: function(data) {
+                jsonObject = data;
+
+                var  t,u,lat, long;
+                u = 0;
+                    for (var i = 0; i < jsonObject.length; i++) {
+                        lat  = jsonObject[i]["latitude"];
+                        long = jsonObject[i]["longitude"];
+
+                        jQuery("#grid_stations").jqGrid('addRowData', i + 1, jsonObject[i])
+                        u = u + 1;
+                    }
+
+            //alert(u);
+
+            }
+        })
+    }
+
+    // Bar Charts
+    function buildChart_StationTimeseries() {
+
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application/json',
+            url: 'http://localhost:6543/api/timeseries_data',
+            beforeSend: function () {
+               // SetBusy();
+            },
+            success: function (response) {
+               // SetNotBusy();
+                var jsonObj = response;
+
+                // Load the Visualization API and the corechart package.
+                google.charts.load('current', {'packages':['corechart']});
+
+                // Set a callback to run when the Google Visualization API is loaded.
+
+                //google.charts.setOnLoadCallback(drawchart_TimeSeries);
+                drawchart_TimeSeries(jsonObj); // calling method
+            },
+
+            error: function () {
+                alert("Error3 loading data! Please try again.");
+            }
+        });
+
+    }
+
+    function drawchart_TimeSeries(dataValues) {
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+
+
+      //google.setOnLoadCallback(drawChart(3));
+        var data = new google.visualization.DataTable();
+
+
+
+        //data.addColumn('string', 'ContractorName');
+        data.addColumn('string', 'Date');
+        data.addColumn('number', 'discharge cfs 00060');
+        //data.addColumn('number', 'test');
+         var a = [3];
+        // var b = [3];
+        //var w = 0;
+        var u1, u2, u3, u4;
+        for (var i = 0; i < dataValues.length; i++) {
+             a = dataValues[i];
+             q = a.width;
+            // for (var key in a) {
+            //     //alert("");
+            // };
+            //for (var w = 0; w < a.length; w++) {
+            //
+                //w = 1;
+                //g_strContractorName = a[w].ContractorName;
+                g_strContractorName = 'contractor name';    //a.ContractorName;
+                g_strYear = 'year';                         //a.RYear;
+                g_EncounterTypeDescription = 'Description';            //a.EncounterTypeDescription;
+                g_site_no = a["site_no"];
+
+                //b[0] = a[w].ContractorName;
+                // b[0] = a.ContractorName;
+                // b[1] = a.Month;
+                // b[2] = a.EncounterCount;
+
+                //u1 = a.ContractorName;
+                u2 = a["datetime"];
+                u3 = parseFloat(a["99908_00060_00003"]);
+                //u4 = 100;
+                data.addRow([u2, u3]);
+                //data.addRow([b[0], b[2], b[1]]);
+                //w = w + 1;
+            //}
+        }
+        // Instantiate and draw our chart, passing in some options
+        var chart = new google.visualization.ColumnChart(document.getElementById('divChartAnalysis_CountVsMean'));
+        //
+        chart.draw(data,
+        {
+            title: "USGS - Site: " + g_site_no,
+            //title: "-Encounters: " + g_strContractorName + " " + g_strYear + "\n" + g_EncounterTypeDescription,
+            position: "top",
+            fontsize: "14px",
+            chartArea: { width: '65%' },
+        });
+
+    }
+
+</script>
+
+
+
+
+<body onload="onLoad()">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Logo1</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!--?<br><br>-->
+
+<div class="container text-center">
+
+    <div class="row">
+        <div class="col-sm-1" style="background-color:lightblue; height: 275px">
+            <strong>States</strong>
+            <br>
+              <div class="dropdown">
+      <!--?<select multiple class="form-control" id="sel2">-->
+        <!--?<option>1</option>-->
+        <!--?<option>2</option>-->
+        <!--?<option>3</option>-->
+        <!--?<option>4</option>-->
+        <!--?<option>5</option>-->
+      <!--?</select>-->
+                  <select id="lstStates" onchange="getHUCSbyState('SD')">
+                      <option value="MN">MN</option>
+                      <option value="SD">SD</option>
+                    </select>
+              </div>
+            <br>
+
+            <div  align="left">
+                <p>Search by</p>
+              <input type="radio" id="huey" name="drone1" value="huey" checked>
+              <label for="huey">HUC(s)</label>
+
+              <input type="radio" id="dewey" name="drone1" value="dewey">
+              <label for="dewey">Site(s)</label>
+            </div>
+
+
+        </div>
+        <div class="col-sm-1" style="background-color:lightblue; height: 275px">
+            <strong>HUCs</strong>
+
+            <br>
+              <div class="dropdown" style="height: 70%">
+
+                  <select multiple class="" id="ddlHUCs" style="width: 100% ; min-width: 80px; height:100%"
+                                                        data-bind="options: dbHucsByState, optionsText: 'huc_name', optionsValue: 'huc_name'"
+                                                        onclick="get_stations_by_huc()" name="D4">
+                    </select>
+
+              </div>
+
+
+        </div>
+        <div class="col-sm-1" style="background-color:lightblue; height: 275px">
+
+            <strong>Sites</strong><br>
+              <div class="dropdown" style="height: 70%">
+
+                  <select multiple class="" id="ddlStates" style="width: 100px ; min-width: 100px; height:100%"
+                                                        data-bind="options: dbBudgetYears, optionsText: 'huc_name', optionsValue: 'huc_name'" name="D4">
+                    </select>
+
+
+              </div>
+            <br>
+
+        </div>
+        <div class="col-sm-9" style="background-color:lightblue;">
+            <!--?other-->
+
+
+            <div class="row">
+                <div class="col-sm-6" style="background-color:lightblue;">
+
+                    <table border="0" style="width: 70%">
+                        <tr>
+                            <td colspan="2">
+                                <strong>Date Range</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="txtDateFrom">Date From:</label>
+                            </td>
+                            <td>
+                                <label for="txtDateTo">Date To:</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <!--?<input class="form-control" style="alignment: left" id="txtDateFrom" type="text" value="2001-01-01">-->
+                                <input  class="form-control" type="text" id="txtDateFrom">
+                            </td>
+                            <td align="center">
+                                <!--?<input class="form-control" style="alignment: left" id="txtDateTo" type="text" value="2010-01-01">-->
+                                <input id="txtDateTo" class="form-control" type="text" >
+                                <!--?<p>Format options:<br>-->
+                                  <!--?<select id="format">-->
+                                    <!--?<option value="mm/dd/yy">Default - mm/dd/yy</option>-->
+                                    <!--?<option value="yy-mm-dd">ISO 8601 - yy-mm-dd</option>-->
+                                    <!--?<option value="d M, y">Short - d M, y</option>-->
+                                    <!--?<option value="d MM, y">Medium - d MM, y</option>-->
+                                    <!--?<option value="DD, d MM, yy">Full - DD, d MM, yy</option>-->
+                                    <!--?<option value="&apos;day&apos; d &apos;of&apos; MM &apos;in the year&apos; yy">With text - 'day' d 'of' MM 'in the year' yy</option>-->
+                                  <!--?</select>-->
+                                <!--?</p>-->
+
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br>
+                </div>
+                <div class="col-sm-6" style="background-color:lightblue;">
+                    <strong>Target Project</strong> <br>
+                      <div class="dropdown">
+                          <select id="lstProjects">
+                              <option value="1">Project North East</option>
+                              <option value="2">Project South West</option>
+                              <option value="3">Project North West</option>
+                          </select>
+                      </div>
+
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-sm-3" style="background-color:lightblue; height: 100%">
+                        <div  align="middle" style="height: 120px">
+                            <p>Search by</p>
+
+                            <table border="0">
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                          <input type="radio" id="huey" name="drone" value="dd" checked>
+                                          <label for="huey">Daily Discharge</label>
+                                            <br>
+                                          <input type="radio" id="dewey" name="drone" value="wq">
+                                          <label for="dewey">Water Quality</label>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-9" align="left" style="background-color:lightblue; ">
+
+                        <table border="0" style="width:100%">
+                            <tr>
+                                <td>
+                                    <div class="list-group">
+                                            <i>...title</i>
+                                            <br>
+                                        <select style="width: 500px; height: 100px" id="lstTests" name="lstTests" multiple>
+                                              <option value="volvo">Volvo</option>
+                                              <option value="saab">Saab</option>
+                                              <option value="opel">Opel</option>
+                                              <option value="audi">Audi</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <table border="0">
+
+                                        <tr>
+                                            <td height="50px">
+                                                <button type="button" style="width:90px" >Remove</button>
+                                                <!--?class="btn btn-primary"-->
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td height="50px">
+                                                <button type="button" style="width:90px" >Add</button>
+                                                <!--?class="btn btn-success"-->
+                                            </td>
+
+                                        </tr>
+
+                                    </table>
+                                </td>
+
+                            </tr>
+                            <tr bgcolor=lightblue>
+                                <td>
+
+                                </td>
+                                <td>
+
+
+                                    <button type="button" class="btn btn-success" onclick="load_usgs_timeseries_by_huc()">Download</button>
+
+
+                                </td>
+                            </tr>
+                        </table>
+
+
+                    </div>
+
+                </div>
+
+        </div>
+
+  </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+          <!--?<img src="https://placehold.it/150x80?text=GRAPH" class="img-responsive" style="width:100%" alt="Image">-->
+          <!--?<p>Current Project</p>-->
+            <div id="divCountVsMean"  >
+
+                <table border="1" aria-valuenow="" align="center" style="width: 100%; height: 44px;">
+                    <tr>
+                        <td>
+                            <label >timeseries</label>
+
+                            <!--?<select id="ddlEncounterDescForAnalyses" data-bind="options: dbEncounterDescForAnalyses, optionsText: 'Desc', optionsValue: ''"></select>-->
+                        </td>
+                    </tr>
+                </table>
+                <table border="1" aria-valuenow="" align="center" style="width: 100%; height: 404px;">
+
+                    <tr>
+                        <td valign="top" >
+                            <!--?<div id="divChartAnalysis_CountVsMean" class="frMainDiv" style="width: 95%; height: 350px;"></div>-->
+                            <table id="grid_ts"></table>
+                        </td>
+
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+
+
+  </div>
+</div><br>
+
+<footer class="container-fluid text-center">
+  <p>Footer Text</p>
+</footer>
+
+</body>
+
+
+<script>
+
+    // create the view model
+    var dbHucsByStateData = [];
+    var dbStationsByHUCData = [];
+    var dbTSByHUCData = [];
+
+    var myViewModel = {
+        dbHucsByState: ko.observableArray(dbHucsByStateData),
+        dbStationsByHUC: ko.observableArray(dbStationsByHUCData),
+        dbTSByHUC: ko.observableArray(dbTSByHUCData)
+    }
+
+    ko.applyBindings(myViewModel);
+
+    function GetBudgetYearList(sSetYear) {
+        var s = "not done";
+        $.ajax({
+            type: "POST",
+            //url: u,
+            url: "http://localhost:6543/api/hucs",
+            //data: "{'state2': 'MN'}",
+            data: "{\"state2\": \"MN\"}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+
+            beforeSend: function () {
+                //SetBusy();
+            },
+
+            success: function (data) {
+                //SetNotBusy();
+                //var parsedTest = JSON.parse(data); //an array [1,2]
+
+                //var jsonObj = $.parseJSON(data);
+
+                myViewModel.dbBudgetYears(data);
+
+                // if (sSetYear != "") {
+                //     var element = document.getElementById('ddlContractYears');
+                //     element.value = sSetYear;
+                // }
+
+                s = "done";
+
+            },
+
+            error: function (err) {
+                // SetNotBusy();
+                alert("18Error : " + err.status + "   " + err.statusText);
+            }
+
+        });
+
+    }
+
+    function getHUCSbyState(sState) {
+        var s = "not done";
+        var u = getUrlBase() + "/api/hucs";
+        //alert(sState);
+        $.ajax({
+            type: "POST",
+            //url: u,
+            url: "http://localhost:6543/api/hucs",
+            //data: "{state2: MN}",
+            //data: "{'\"state2\": \"' + 'MN' + '\"}",
+            //data: "{\"state2\": \"MN\"}",
+            data: "{\"state2\": \"" + sState + "\"}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+
+            beforeSend: function () {
+                //SetBusy();
+            },
+
+            success: function (data) {
+
+
+                var data2 = new Array();
+                //var b = [];
+                // data2.push('ww');
+                //
+                // var data3 = {};
+                // var data4 = {};
+                //
+                // var f = function() {
+                //   // do something
+                // };
+                //
+                // // setup Function as Value
+                // var data3 = {};
+                // data3['huc_name'] = 'a';
+                // data2.push(data3);
+                //
+                // var data3 = {};
+                // data3['huc_name'] = 'b';
+                // data2.push(data3);
+                //
+                // var data3 = {};
+                // data3['huc_name'] = 'c';
+                // data2.push(data3);
+
+                var i;
+
+                for (i = 0; i < data.length -1 ; i++) {
+                    var data3 = {};
+                    tt = data[i];
+                    data3['huc_name'] = tt['0'];
+                    data2.push(data3);
+                }
+
+
+                // for (i = 0; i < cars.length; i++) {
+                //   text += cars[i] + "<br>";
+                // }
+
+
+                //alert(a.is);  // => 'SPARTA'
+                //alert(b.is);  // => undefined
+                myViewModel.dbHucsByState(data2);
+                s = "done";
+            },
+
+            error: function (err) {
+                //SetNotBusy();
+                alert("18aaError : " + err.status + "   " + err.statusText);
+            }
+
+        });
+
+        return s;
+    };
+
+    function get_stations_by_huc(sHUCs) {
+        var s = "not done";
+        var u = getUrlBase() + "/api/hucs";
+        //alert(sHUCs);
+        $.ajax({
+            type: "POST",
+            //url: u,
+            url: "http://localhost:6543/api/stations_by_huc",
+            //data: "{'state2': 'MN'}",
+            data: "{\"huc_id\": \"07040004,55555\"}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+
+            beforeSend: function () {
+                //SetBusy();
+            },
+
+            success: function (data) {
+                myViewModel.dbStationsByHUC(data);
+                s = "done";
+            },
+
+            error: function (err) {
+                //SetNotBusy();
+                alert("18aaError : " + err.status + "   " + err.statusText);
+            }
+
+        });
+
+        return s;
+    };
+
+    function load_usgs_timeseries_by_huc() {
+        var s = "not done";
+
+        //lstHUCs = ddlHUCs.selected()
+//var element = document.getElementById('ddlHUCs');
+//lstHUCs = this.options[element.selectedIndex].innerHTML
+        strHUCs = $("#ddlHUCs").val();
+        strHUCs1 = strHUCs.join();
+//alert(lstHUCs);
+           var strSiteIDs = $("#ddlHUCs option:selected").val();
+            //var strYear = $("#ddlContractYears option:selected").val();//'2015';
+            var strDateFrom = $("#txtDateFrom").val();
+            var strDateTo = $("#txtDateTo").val();
+
+        var u = getUrlBase() + "/api/usgs";
+        //alert('here');
+
+        var grid = jQuery("#grid_ts").jqGrid({
+            // datatype: "json",
+            // contentType: "application/json; charset=utf-8",
+            width: 1125,
+            //scrollerbar: true,
+            height: 300,
+            colNames: ['ts_id','agency_cd','HydroCode','TDDataTime','TSValue','uuid1'],
+            colModel: [
+                { name: 'ts_id', index: 'ts_id', width: 100, align: 'right'},
+                { name: 'agency_cd', index: 'agency_cd', width: 100, align: 'right'},
+                { name: 'HydroCode', index: 'HydroCode', width: 100, align: 'right'},
+                { name: 'TDDataTime', index: 'TDDataTime', width: 100, align: 'right'},
+                { name: 'TSValue', index: 'TSValue', width: 100, align: 'right'},
+                { name: 'uuid1', index: 'uuid1', width: 100, align: 'right'}
+                ],
+            multiselect: false,
+            ondblClickRow: function(stationid) {
+                // //alert("You double click row with stationid: "+stationid);
+                // var data = jQuery("#grid_stations").jqGrid('getRowData',stationid);
+                // //alert("Status ->"+data.stationid);
+                // var _lat = data.SiteLatitude;
+                // var _lon = data.SiteLongitude;
+                // centerAndZoom(_lat,_lon);
+                },
+            caption: "Timeseries Data"
+        })
+
+        $.ajax({
+            type: "POST",
+            //url: u,
+            url: "http://localhost:6543/api/usgs",
+            //data: "{'state2': 'MN'}",
+            //data: "{\"huc_id\": \"222222,333333,444444,555555\"}",
+            //data: "{\"huc_id\": \"" + strHUCs1 + "\"}",
+            //data: "{\"huc_id\": \"" + strHUCs1 + "\",\"date_from\": \"" + strDateFrom + "\"}",
+            data: "{\"huc_id\": \"" + strHUCs1 + "\",\"date_from\": \"" + strDateFrom + "\",\"date_to\": \"" + strDateTo + "\"}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+
+            beforeSend: function () {
+                //SetBusy();
+                $('#grid_ts').jqGrid('clearGridData');
+
+            },
+
+            success: function (data) {
+                //myViewModel.dbTSByHUC(data);
+
+                jsonObject = data;
+
+                var  t,u,lat, long;
+                u = 0;
+                    for (var i = 0; i < jsonObject.length; i++) {
+                        lat  = jsonObject[i]["latitude"];
+                        long = jsonObject[i]["longitude"];
+
+                        jQuery("#grid_ts").jqGrid('addRowData', i + 1, jsonObject[i])
+                        u = u + 1;
+                    }
+                s = "done";
+            },
+
+            error: function (err) {
+                //SetNotBusy();
+                alert("18aaError : " + err.status + "   " + err.statusText);
+            }
+
+        });
+
+        return s;
+    }
+</script>
+
+<script>
+    function onLoad() {
+        // var options = {
+		// 	center: [35.10418, -106.62987],
+		// 	zoom: 2
+		// }
+        //
+		// var map = L.map('map', options);
+        //
+		// L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: 'OSM'})
+		// .addTo(map);
+
+        // populate dropdowns
+        var element = document.getElementById('lstStates');
+        getHUCSbyState(element.value)
+        //GetBudgetYearList();
+
+    }
+
+    function centerAndZoom(_x,_y) {
+        map.setView([_x,_y], 12)
+    }
+
+
+    var options = {
+    center: [35.10418, -106.62987],
+    zoom: 2
+    }
+
+    if (map == null){
+       var map = L.map('map', options);
+    }
+
+    // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: 'OSM'})
+    // .addTo(map);
+</script>
+</html>

@@ -8,7 +8,7 @@ class USGS_data:
     __stations_data={}
 
     @classmethod
-    def usgs_load_by_HUC(cls, huc, limit=None):
+    def usgs_load_by_HUC(cls, huc,date_from, date_to, limit=None):
         url = "https://www.amfiindia.com/spages/NAVAll.txt?t=23052017073640"
 
         url = "http://waterdata.usgs.gov/MN/nwis/dv?referred_module=sw&"
@@ -22,6 +22,9 @@ class USGS_data:
         "2Csite_tp_cd%2Crealtime_parameter_selection"
 
         url = "http://waterdata.usgs.gov/MN/nwis/dv?referred_module=sw&huc_cd=04010101&site_tp_cd=OC&site_tp_cd=OC-CO&site_tp_cd=ES&site_tp_cd=LK&site_tp_cd=ST&site_tp_cd=ST-CA&site_tp_cd=ST-DCH&site_tp_cd=ST-TS&index_pmcode_00060=1&sort_key=site_no&group_key=NONE&sitefile_output_format=html_table&column_name=agency_cd&column_name=site_no&column_name=station_nm&range_selection=date_range&begin_date=2006-4-24&end_date=2006-5-24&format=rdb&date_format=YYYY-MM-DD&rdb_compression=value&rdb_meas_compression=file&list_of_search_criteria=huc_cd_by_code%2Csite_tp_cd%2Crealtime_parameter_selection"
+
+        url = "http://waterdata.usgs.gov/MN/nwis/dv?referred_module=sw&huc_cd=" + huc + "&site_tp_cd=OC&site_tp_cd=OC-CO&site_tp_cd=ES&site_tp_cd=LK&site_tp_cd=ST&site_tp_cd=ST-CA&site_tp_cd=ST-DCH&site_tp_cd=ST-TS&index_pmcode_00060=1&sort_key=site_no&group_key=NONE&sitefile_output_format=html_table&column_name=agency_cd&column_name=site_no&column_name=station_nm&range_selection=date_range&begin_date=" + date_from + "&end_date=" + date_to + "&format=rdb&date_format=MM-DD-YYYY&rdb_compression=value&rdb_meas_compression=file&list_of_search_criteria=huc_cd_by_code%2Csite_tp_cd%2Crealtime_parameter_selection"
+        print(url)
         request = requests.get(url)
 
         # requires

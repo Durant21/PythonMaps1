@@ -58,7 +58,7 @@ def load_usgs_timeseries_by_huc(request: Request):
     # huc_id = Request.matchdict.get( 'huc_id' )
     # huc_id = "04010101"
 
-    guid_id = USGS_data.load_by_HUC( hucs=hucs_list['huc_id'] )
+    guid_id = USGS_data.load_by_HUC( hucs=hucs_list['huc_id'],date_from=hucs_list['date_from'],date_to=hucs_list['date_to'], limit=None )
 
     ts = USGS_data.ts_by_guid_id(guid_id)
 

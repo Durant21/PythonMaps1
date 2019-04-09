@@ -1,6 +1,4 @@
-<<<<<<< HEAD
 
-=======
 # !/usr/bin/python
 import psycopg2
 # from config1a import config11
@@ -66,4 +64,4 @@ def get_vendors():
 if __name__ == '__main__':
     # connect()
     get_vendors()
->>>>>>> 032619_add_Postgres_CRUD
+

@@ -92,10 +92,14 @@
 
     function getHUCSbyState(sState) {
         var s = "not done";
+        var u = getUrlBase() + "/api/hucs";
+        //alert(u);
         $.ajax({
             type: "POST",
-            url: getUrlBase() + "/api/hucs",
-            data: "{'state2': 'MN'}",
+            //url: u,
+            url: "http://localhost:6543/api/hucs",
+            //data: "{'state2': 'MN'}",
+            data: "{\"state2\": \"MN\"}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
 
@@ -106,12 +110,36 @@
             success: function (data) {
                 //SetNotBusy();
                 //var parsedTest = JSON.parse(data); //an array [1,2]
+                l = data.length;
+                //alert(l);
+                r = data[3];
+                v = r['huc_name'];
+                //alert(v);
 
-                var jsonObj = $.parseJSON(data);
+                //var jsonObj = $.parseJSON(data);
                 //var jsonObjs = JSON.stringify(data);
-                //for (var i = 0; i <= 145; i++) {
-                    //jQuery("#TSGridView").jqGrid('delRowData', i + 1);
-                //}
+                // for (var i = 1; i <= l; i++) {
+                //     //jQuery("#TSGridView").jqGrid('delRowData', i + 1);
+                //     r = data[i];
+                //     v = r['huc_name'];
+                //     // var element = document.getElementById('lstHUCs');
+                //     // element.value = v;
+                //     var x = document.getElementById("lstHUCs");
+                //     var option = document.createElement("option");
+                //     option.text = v;
+                //     x.add(option);
+                // }
+
+                var min = 12,
+                max = 100,
+                select = document.getElementById('lstHUCs');
+
+                for (var i = min; i<=max; i++){
+                    var opt = document.createElement('option');
+                    opt.value = i;
+                    opt.innerHTML = i;
+                    select.appendChild(opt);
+                }
 
                 // myViewModel.dbBudgetYears(jsonObj);
                 //
@@ -125,8 +153,8 @@
             },
 
             error: function (err) {
-                SetNotBusy();
-                alert("18Error : " + err.status + "   " + err.statusText);
+                //SetNotBusy();
+                alert("18aaError : " + err.status + "   " + err.statusText);
             }
 
         });
@@ -493,7 +521,7 @@
 
             <br>
               <div class="dropdown">
-<<<<<<< HEAD
+
                 <!--?<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">HUCs-->
                 <!--?<span class="caret"></span></button>-->
                 <!--?<ul class="dropdown-menu">-->
@@ -509,25 +537,29 @@
                       <!--?<option value="audi">3</option>-->
                     <!--?</select>-->
 
-                    <!--?<form action="/action_page.php">-->
+                    <!--?<form action="/action_page.php">-->2222
                     <select id="lstHucs" name="lstHucs" multiple>
-                      <option value="volvo">Volvo</option>
-                      <option value="saab">Saab</option>
-                      <option value="opel">Opel</option>
-                      <option value="audi">Audi</option>
+                      <!--?<option value="volvo">Volvo</option>-->
+                      <!--?<option value="saab">Saab</option>-->
+                      <!--?<option value="opel">Opel</option>-->
+                      <!--?<option value="audi">Audi</option>-->
+                        <option >Volvo</option>
+                      <option >Saab</option>
+                      <option >Opel</option>
+                      <option >Audi</option>
                     </select>
                   <button class="btn btn-primary dropdown-toggle" type="button">Search</button>
                     <!--?<input type="submit">-->
                     <!--?</form>-->
-=======
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">HUCs
-                <span class="caret"></span></button>
-                <ul id="lstHUCs" class="dropdown-menu">
-                  <li><a href="#">HTML</a></li>
-                  <li><a href="#">CSS</a></li>
-                  <li><a href="#">JavaScript</a></li>
-                </ul>
->>>>>>> 032619_add_Postgres_CRUD
+<!--?3333-->
+                <!--?<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">HUCs-->
+                <!--?<span class="caret"></span></button>-->
+                <!--?<ul id="lstHUCs" class="dropdown-menu">-->
+                  <!--?<li><a href="#">HTML</a></li>-->
+                  <!--?<li><a href="#">CSS</a></li>-->
+                  <!--?<li><a href="#">JavaScript</a></li>-->
+                <!--?</ul>-->
+
               </div>
             <br>
 
@@ -622,8 +654,8 @@
                           <!--?<a href="#" class="list-group-item">Third item</a>-->
                           <!--?<a href="#" class="list-group-item">Third item</a>-->
 
-
-                                <select style="width: 100%; height: 100px" id="lstHucs" name="lstHucs" multiple>
+1111
+                                <select style="width: 100%; height: 100px" id="lstTests" name="lstTests" multiple>
                                       <option value="volvo">Volvo</option>
                                       <option value="saab">Saab</option>
                                       <option value="opel">Opel</option>
