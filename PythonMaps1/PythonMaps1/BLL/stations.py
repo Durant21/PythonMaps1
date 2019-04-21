@@ -32,13 +32,27 @@ class BLL_stations:
 
         uuid1 = str( uuid.uuid4())
         stations_group = []
+        only_stations = []
         lst_hucs = hucs_list['huc_id'].split(',')
 
         for huc in lst_hucs:
             print(huc)
-            hucs = stations_data.stations_by_huc(huc,limit=10)
-            print()
-            stations_group = hucs + stations_group
+            # hucs = stations_data.stations_by_huc(huc,limit=10)
+            stations = stations_data.load_usgs_stations_by_huc(huc=huc)
+
+            for station in stations:  # you iterate through the list, and print the single lines
+                s = station.split()
+                if (s):
+                    # if (s[0] != '#'):
+                    if (s[0] == 'USGS'):
+                        print( station )
+                        # print(":" + t[0])
+                        q = s[1]
+                        only_stations.append( s[1] )
+
+
+
+            stations_group = only_stations + stations_group
 
         return stations_group
 

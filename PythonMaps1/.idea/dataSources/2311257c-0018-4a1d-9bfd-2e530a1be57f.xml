@@ -74,81 +74,125 @@
       <Position>6</Position>
       <DataType>VARCHAR|0s</DataType>
     </column>
-    <index id="23" parent="7" name="sqlite_autoindex_TSData_1">
+    <column id="23" parent="7" name="Qualified">
+      <Position>7</Position>
+      <DataType>VARCHAR|0s</DataType>
+    </column>
+    <column id="24" parent="7" name="Param">
+      <Position>8</Position>
+      <DataType>VARCHAR|0s</DataType>
+    </column>
+    <column id="25" parent="7" name="TS_duplcts">
+      <Position>9</Position>
+      <DataType>VARCHAR|0s</DataType>
+    </column>
+    <column id="26" parent="7" name="TSTypeID">
+      <Position>10</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="27" parent="7" name="FeatureID">
+      <Position>11</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="28" parent="7" name="TSRemarks">
+      <Position>12</Position>
+      <DataType>VARCHAR|0s</DataType>
+    </column>
+    <column id="29" parent="7" name="TSComments">
+      <Position>13</Position>
+      <DataType>VARCHAR|0s</DataType>
+    </column>
+    <column id="30" parent="7" name="BaseVsEvent">
+      <Position>14</Position>
+      <DataType>VARCHAR|0s</DataType>
+    </column>
+    <column id="31" parent="7" name="Transferable">
+      <Position>15</Position>
+      <DataType>VARCHAR|0s</DataType>
+    </column>
+    <column id="32" parent="7" name="source1">
+      <Position>16</Position>
+      <DataType>VARCHAR|0s</DataType>
+    </column>
+    <column id="33" parent="7" name="ProcNotes">
+      <Position>17</Position>
+      <DataType>VARCHAR|0s</DataType>
+    </column>
+    <index id="34" parent="7" name="sqlite_autoindex_TSData_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ts_id</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <index id="24" parent="7" name="ix_TSData_TSDateTime">
+    <index id="35" parent="7" name="ix_TSData_TSDateTime">
       <ColNames>TSDateTime</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="25" parent="7">
+    <key id="36" parent="7">
       <ColNames>ts_id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_TSData_1</UnderlyingIndexName>
     </key>
-    <column id="26" parent="8" name="type">
+    <column id="37" parent="8" name="type">
       <Position>1</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="27" parent="8" name="name">
+    <column id="38" parent="8" name="name">
       <Position>2</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="28" parent="8" name="tbl_name">
+    <column id="39" parent="8" name="tbl_name">
       <Position>3</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="29" parent="8" name="rootpage">
+    <column id="40" parent="8" name="rootpage">
       <Position>4</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="30" parent="8" name="sql">
+    <column id="41" parent="8" name="sql">
       <Position>5</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="31" parent="9" name="station_id">
+    <column id="42" parent="9" name="station_id">
       <Position>1</Position>
       <DataType>VARCHAR|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="32" parent="9" name="OrganizationIdentifier">
+    <column id="43" parent="9" name="OrganizationIdentifier">
       <Position>2</Position>
       <DataType>VARCHAR|0s</DataType>
     </column>
-    <column id="33" parent="9" name="OrganizationFormalName">
+    <column id="44" parent="9" name="OrganizationFormalName">
       <Position>3</Position>
       <DataType>VARCHAR|0s</DataType>
     </column>
-    <column id="34" parent="9" name="MonitoringLocationTypeName">
+    <column id="45" parent="9" name="MonitoringLocationTypeName">
       <Position>4</Position>
       <DataType>VARCHAR|0s</DataType>
     </column>
-    <column id="35" parent="9" name="HUCEightDigitCode">
+    <column id="46" parent="9" name="HUCEightDigitCode">
       <Position>5</Position>
       <DataType>VARCHAR|0s</DataType>
     </column>
-    <column id="36" parent="9" name="LatitudeMeasure">
+    <column id="47" parent="9" name="LatitudeMeasure">
       <Position>6</Position>
       <DataType>FLOAT|0s</DataType>
     </column>
-    <column id="37" parent="9" name="LongitudeMeasure">
+    <column id="48" parent="9" name="LongitudeMeasure">
       <Position>7</Position>
       <DataType>FLOAT|0s</DataType>
     </column>
-    <column id="38" parent="9" name="ProviderName">
+    <column id="49" parent="9" name="ProviderName">
       <Position>8</Position>
       <DataType>VARCHAR|0s</DataType>
     </column>
-    <index id="39" parent="9" name="sqlite_autoindex_stations_1">
+    <index id="50" parent="9" name="sqlite_autoindex_stations_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>station_id</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="40" parent="9">
+    <key id="51" parent="9">
       <ColNames>station_id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_stations_1</UnderlyingIndexName>

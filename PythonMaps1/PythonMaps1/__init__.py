@@ -25,8 +25,10 @@ def main(global_config, **settings):
         config.add_route( 'stations1_api', '/api/usgs_stations' )
         config.add_route( 'stations2_api', '/api/load_stations' )
         config.add_route( 'stations3_api', '/api/stations_by_huc' )
-        config.add_route( 'usgs_api', '/api/usgs' )
+        config.add_route( 'usgs_api', '/api/usgs' )                     # TS by huc
+        config.add_route( 'usgs2_api', '/api/usgs2' )                   # TS by station
         config.add_route( 'usgs1_api', '/api/usgs1/{guid_id}' )
+
         config.add_route( 'hucs_api', '/api/hucs' )
         config.add_route( 'hucs1_api', '/api/load_hucs' )
         # config.add_route( 'station_data_api', '/api/station_data' )

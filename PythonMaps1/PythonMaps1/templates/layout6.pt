@@ -41,6 +41,60 @@
       display: none;
     }
   }
+
+
+/* ---------------  Center the loader  ----------------- */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 75%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 }
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+  from{ bottom:-100px; opacity:0 }
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+
   </style>
 
 
@@ -434,6 +488,8 @@
 
 <body onload="onLoad()">
 
+<div id="loader"></div>
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -483,11 +539,11 @@
 
             <div  align="left">
                 <p>Search by</p>
-              <input type="radio" id="huey" name="drone1" value="huey" checked>
-              <label for="huey">HUC(s)</label>
+              <input type="radio" id="rdo_hucs" name="rdoGroup1" value="huey" checked>
+              <label for="rdo_hucs">HUC(s)</label>
 
-              <input type="radio" id="dewey" name="drone1" value="dewey">
-              <label for="dewey">Site(s)</label>
+              <input type="radio" id="rdo_sites" name="rdoGroup1" value="dewey">
+              <label for="rdo_sites">Site(s)</label>
             </div>
 
 
@@ -512,8 +568,9 @@
             <strong>Sites</strong><br>
               <div class="dropdown" style="height: 70%">
 
-                  <select multiple class="" id="ddlStates" style="width: 100px ; min-width: 100px; height:100%"
-                                                        data-bind="options: dbBudgetYears, optionsText: 'huc_name', optionsValue: 'huc_name'" name="D4">
+                  <select multiple class="" id="ddlSites" style="width: 100px ; min-width: 100px; height:100%"
+                          data-bind="options: dbStationsByHUC, optionsText: 'station_name', optionsValue: 'station_name'"
+                          name="D4">
                     </select>
 
 
@@ -609,10 +666,7 @@
                                             <i>...title</i>
                                             <br>
                                         <select style="width: 500px; height: 100px" id="lstTests" name="lstTests" multiple>
-                                              <option value="volvo">Volvo</option>
-                                              <option value="saab">Saab</option>
-                                              <option value="opel">Opel</option>
-                                              <option value="audi">Audi</option>
+                                              <option value="00060">00060</option>
                                         </select>
                                     </div>
                                 </td>
@@ -663,16 +717,31 @@
 
     <div class="row">
         <div class="col-sm-12">
-          <!--?<img src="https://placehold.it/150x80?text=GRAPH" class="img-responsive" style="width:100%" alt="Image">-->
-          <!--?<p>Current Project</p>-->
             <div id="divCountVsMean"  >
-
                 <table border="1" aria-valuenow="" align="center" style="width: 100%; height: 44px;">
                     <tr>
-                        <td>
+                        <td width="14%">
+                            <label id="lblCount"></label>
+
+                        </td>
+                        <td width="14%">
+
+                        </td>
+                        <td width="14%">
+
+                        </td>
+                        <td width="14%">
                             <label >timeseries</label>
 
-                            <!--?<select id="ddlEncounterDescForAnalyses" data-bind="options: dbEncounterDescForAnalyses, optionsText: 'Desc', optionsValue: ''"></select>-->
+                        </td>
+                        <td width="14%">
+
+                        </td>
+                        <td width="14%">
+
+                        </td>
+                        <td width="14%">
+
                         </td>
                     </tr>
                 </table>
@@ -838,12 +907,30 @@
         var s = "not done";
         var u = getUrlBase() + "/api/hucs";
         //alert(sHUCs);
+
+        strHUCs = $("#ddlHUCs").val();
+        if (strHUCs) {
+            strHUCs1 = strHUCs.join();
+        } else {
+            alert("Please specify one or more HUCs");
+            return;
+        }
+
+        var sData = '';
+        //if (ctl_checked == 'hucs') {
+        //data: "{\"huc_id\": \"" + strHUCs1 + "\",\"date_from\": \"" + strDateFrom + "\",\"date_to\": \"" + strDateTo + "\"}",
+        //    sData =  "{\"huc_id\": \"" + strHUCs1 + "\"}\"//,\"date_from\": \"" + strDateFrom + "\",\"date_to\": \"" + strDateTo + "\"}"
+       // } else if (ctl_checked == 'sites') {
+            sData =  "{\"huc_id\": \"" + strHUCs1 + "\"}"
+       // };
+
         $.ajax({
             type: "POST",
             //url: u,
             url: "http://localhost:6543/api/stations_by_huc",
             //data: "{'state2': 'MN'}",
-            data: "{\"huc_id\": \"07040004,55555\"}",
+            //data: "{\"huc_id\": \"07040004,55555\"}",
+            data: sData,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
 
@@ -852,7 +939,17 @@
             },
 
             success: function (data) {
-                myViewModel.dbStationsByHUC(data);
+                var data2 = new Array();
+                var i;
+
+                for (i = 0; i < data.length -1 ; i++) {
+                    var data3 = {};
+                    tt = data[i];
+                    //data3['station_name'] = tt['0'];
+                    data3['station_name'] = tt;
+                    data2.push(data3);
+                }
+                myViewModel.dbStationsByHUC(data2);
                 s = "done";
             },
 
@@ -866,22 +963,44 @@
         return s;
     };
 
+
+
     function load_usgs_timeseries_by_huc() {
         var s = "not done";
 
-        //lstHUCs = ddlHUCs.selected()
-//var element = document.getElementById('ddlHUCs');
-//lstHUCs = this.options[element.selectedIndex].innerHTML
-        strHUCs = $("#ddlHUCs").val();
-        strHUCs1 = strHUCs.join();
-//alert(lstHUCs);
-           var strSiteIDs = $("#ddlHUCs option:selected").val();
-            //var strYear = $("#ddlContractYears option:selected").val();//'2015';
-            var strDateFrom = $("#txtDateFrom").val();
-            var strDateTo = $("#txtDateTo").val();
+        //rdo_hucs
+        var ctl_checked = '';
+        var rdo_hucs = document.getElementById('rdo_hucs');
+        var rdo_sites = document.getElementById('rdo_sites');
+
+        if (rdo_hucs.checked == true) {
+            ctl_checked = 'hucs';
+
+        } else if (rdo_sites.checked == true) {
+            ctl_checked = 'sites';
+
+        }
+
+        var lblCount = document.getElementById('lblCount');
+
+        //var strSiteIDs = $("#ddlHUCs option:selected").val();
+
+        var strDateFrom = $("#txtDateFrom").val();
+        var strDateTo = $("#txtDateTo").val();
+
+        if (strDateFrom == '') {
+            alert("Please specify a date range");
+            return;
+        }
+
+        if (strDateTo == '') {
+            alert("Please specify a date range");
+            return;
+        }
+
 
         var u = getUrlBase() + "/api/usgs";
-        //alert('here');
+
 
         var grid = jQuery("#grid_ts").jqGrid({
             // datatype: "json",
@@ -910,15 +1029,45 @@
             caption: "Timeseries Data"
         })
 
+        var sData = '';
+        if (ctl_checked == 'hucs') {
+
+            strHUCs = $("#ddlHUCs").val();
+            if (strHUCs) {
+                strHUCs1 = strHUCs.join();
+            } else {
+                alert("Please specify one or more HUCs");
+                return;
+            }
+
+            sUrl =  "http://localhost:6543/api/usgs"
+            sData =  "{\"huc_id\": \"" + strHUCs1 + "\",\"date_from\": \"" + strDateFrom + "\",\"date_to\": \"" + strDateTo + "\"}"
+
+        } else if (ctl_checked == 'sites') {
+
+            strSiteIDs = $("#ddlSites").val();
+            if (strSiteIDs) {
+                strSiteIDs = strSiteIDs.join();
+            } else {
+                alert("Please specify one or more Sites");
+                return;
+            }
+
+            sData =  "{\"station_id\": \"" + strSiteIDs + "\",\"date_from\": \"" + strDateFrom + "\",\"date_to\": \"" + strDateTo + "\"}"
+            sUrl = "http://localhost:6543/api/usgs2"
+        };
+
         $.ajax({
             type: "POST",
             //url: u,
-            url: "http://localhost:6543/api/usgs",
+            // url: "http://localhost:6543/api/usgs",
+            url: sUrl,
             //data: "{'state2': 'MN'}",
             //data: "{\"huc_id\": \"222222,333333,444444,555555\"}",
             //data: "{\"huc_id\": \"" + strHUCs1 + "\"}",
             //data: "{\"huc_id\": \"" + strHUCs1 + "\",\"date_from\": \"" + strDateFrom + "\"}",
-            data: "{\"huc_id\": \"" + strHUCs1 + "\",\"date_from\": \"" + strDateFrom + "\",\"date_to\": \"" + strDateTo + "\"}",
+            data: sData,
+
             contentType: "application/json; charset=utf-8",
             dataType: "json",
 
@@ -926,10 +1075,18 @@
                 //SetBusy();
                 $('#grid_ts').jqGrid('clearGridData');
 
+                document.getElementById("loader").style.display = "block";
+                lblCount.innerText = "searching...";
+
             },
 
             success: function (data) {
                 //myViewModel.dbTSByHUC(data);
+
+                //alert(data.length);
+
+
+                lblCount.innerText = data.length + " records";
 
                 jsonObject = data;
 
@@ -943,11 +1100,15 @@
                         u = u + 1;
                     }
                 s = "done";
+
+                    document.getElementById("loader").style.display = "none";
             },
 
             error: function (err) {
                 //SetNotBusy();
                 alert("18aaError : " + err.status + "   " + err.statusText);
+                lblCount.innerText = 0 + " records";
+                document.getElementById("loader").style.display = "none";
             }
 
         });
@@ -972,6 +1133,8 @@
         var element = document.getElementById('lstStates');
         getHUCSbyState(element.value)
         //GetBudgetYearList();
+
+        document.getElementById("loader").style.display = "none";
 
     }
 

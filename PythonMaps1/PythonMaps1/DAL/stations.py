@@ -2,6 +2,8 @@
 import csv
 import os
 import uuid
+import requests
+from bs4 import BeautifulSoup as bs
 from PythonMaps1.data.db_factory import DbSessionFactory
 from PythonMaps1.data.stations import Stations
 
@@ -99,6 +101,40 @@ class stations_data:
         session.close()
 
         return stations
+
+
+    @classmethod
+    def load_usgs_stations_by_huc(cls,huc ):
+        # url = "http://waterdata.usgs.gov/MN/nwis/dv?referred_module=sw&huc_cd=" + huc + "&site_tp_cd=OC&site_tp_cd=OC-CO&site_tp_cd=ES&site_tp_cd=LK&site_tp_cd=ST&site_tp_cd=ST-CA&site_tp_cd=ST-DCH&site_tp_cd=ST-TS&index_pmcode_00060=1&sort_key=site_no&group_key=NONE&sitefile_output_format=html_table&column_name=agency_cd&column_name=site_no&column_name=station_nm&range_selection=date_range&begin_date=" + date_from + "&end_date=" + date_to + "&format=rdb&date_format=MM-DD-YYYY&rdb_compression=value&rdb_meas_compression=file&list_of_search_criteria=huc_cd_by_code%2Csite_tp_cd%2Crealtime_parameter_selection"
+
+        url = "https://waterdata.usgs.gov/MN/nwis/inventory?huc_cd=" + huc + "&group_key=huc_cd&format=sitefile_output&sitefile_output_format=rdb&column_name=agency_cd&column_name=site_no&column_name=station_nm&column_name=site_tp_cd&column_name=lat_va&column_name=long_va&column_name=dec_lat_va&column_name=dec_long_va&column_name=coord_meth_cd&column_name=coord_acy_cd&column_name=coord_datum_cd&column_name=dec_coord_datum_cd&column_name=district_cd&column_name=state_cd&column_name=county_cd&list_of_search_criteria=huc_cd_by_code"
+
+        print(url)
+        request = requests.get(url)
+
+        # requires
+        #  $ pip install lxml
+        soup = bs(request.text,"lxml")
+
+        # soup.text is to get the returned text
+        # split function, splits the entire text into different lines (using '\n') and stores in a list. You can define your own splitter.
+        # each line is stored as an element in the allLines list.
+        allLines = soup.text.split('\n')
+
+        # for line in allLines: # you iterate through the list, and print the single lines
+
+            # t = line.split()
+            # if (t):
+            #     if (t[0] != '#'):
+            #         print( line )
+            #         # print(":" + t[0])
+
+
+        print('leaving DAL')
+
+        # return the guid
+        return allLines
+
 
 
     @classmethod

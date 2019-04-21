@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="USGS" uuid="7730b630-437c-4e77-8300-7751e780ed2e">
+    <data-source source="LOCAL" name="USGS" uuid="2311257c-0018-4a1d-9bfd-2e530a1be57f">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
