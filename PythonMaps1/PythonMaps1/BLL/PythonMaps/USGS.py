@@ -1,23 +1,71 @@
-import csv
-import os
 import uuid
 
-from PythonMaps1.DAL import USGS
-from PythonMaps1.DAL.TS import Repository
-from PythonMaps1.viewmodels.create_ts_viewmodel import CreateTSViewModel
-from PythonMaps1.data.db_factory import DbSessionFactory
-from PythonMaps1.data.TSData import TSData
+from PythonMaps1.DAL.PythonMaps import USGS
+from PythonMaps1.DAL.PythonMaps.TS import Repository
+from PythonMaps1.viewmodels.PythonMaps.create_ts_viewmodel import CreateTSViewModel
+from PythonMaps1.data.PythonMaps.db_factory import DbSessionFactory
+from PythonMaps1.data.PythonMaps.TSData import TSData
+from PythonMaps1.DAL.PythonMaps.Postgres import Postgres_data
 
-from PythonMaps1.DAL.USGS import USGS_data
+from PythonMaps1.DAL.PythonMaps.USGS import USGS_data
+from PythonMaps1.DAL.PythonMaps.Postgres import Postgres_data
+from PythonMaps1.DAL.PythonMaps.TS import Repository
 
 class USGS_data:
     __stations_data={}
 
     @classmethod
     def all_ts(cls, limit=None):
-        ts = USGS.USGS_data.all_ts(limit=25)
+        ts = USGS.USGS_data.all_ts( limit=25 )
 
         return ts
+
+
+    @classmethod
+    def validate(cls,guid_id, limit=None):
+        # get all the records by guid
+
+        # check the server for duplicates.
+        # non-duplicates marked as 'transferable'
+        #     for each r in ts:
+        #         bDuplicate = USGS.USGS_data.run_exe( strSQL)
+        #
+        #         if (bDuplicate):
+        #             iDups = iDups + 1
+        #
+        #               # add duplicate's record_id to array
+        #
+        # update all local TS records by the array (set transferable = false)
+
+        ts = USGS.USGS_data.ts_by_guid_id( guid_id )
+        #
+        for TSData in ts:
+            tsvalue = TSData.TSValue
+            site_no = TSData.site_no
+            tsdatetime = TSData.TSDateTime
+            tsrecs = Postgres_data.get_timeseries(site_no=site_no,tsdatetime=tsdatetime)
+            print(str(tsrecs.__len__()) + " recs")
+
+            if (tsrecs.__len__() == 0):
+                doc_name = 'a doc name'
+                task = (guid_id)
+                Repository.update_ts(task)
+
+
+        #
+        # sql = "SELECT * from public.council5;"
+        #
+        # ts = Postgres_data.run_exe( sql )
+
+
+        # count records by guid where 'transferable = true'
+
+
+        # return: {duplicates: <n> , non-duplicates: <n> , transferable: <n>}
+
+
+        return ts
+
 
 
     @classmethod
@@ -30,7 +78,7 @@ class USGS_data:
         lst_hucs = hucs.split(',')
 
         for huc in lst_hucs:
-            result_guid = USGS.USGS_data.usgs_load_by_HUC( huc,date_from,date_to,limit )
+            result_guid = USGS.USGS_data.usgs_load_by_HUC( huc, date_from, date_to, limit )
 
             for line in result_guid: # you iterate through the list, and print the single lines
                 t = line.split()
@@ -39,7 +87,8 @@ class USGS_data:
                         print( line )
                         sentence_dict = {}
                         sentence_dict.update( {'agency_cd': t[0]} )
-                        sentence_dict.update( {'HydroCode': t[1]} )
+                        # sentence_dict.update( {'HydroCode': t[1]} )
+                        sentence_dict.update( {'site_no': t[1]} )
                         # sentence_dict.update( {'ts_id': '22222'} )
                         sentence_dict.update( {'TSDateTime': t[2]} )
 
@@ -87,7 +136,6 @@ class USGS_data:
             return data
 
         return uuid1
-
 
     @classmethod
     def load_by_station(cls, stations,date_from,date_to, limit=None):
@@ -99,7 +147,7 @@ class USGS_data:
         lst_stations = stations.split(',')
 
         for station in lst_stations:
-            result_guid = USGS.USGS_data.usgs_load_by_station( station,date_from,date_to,limit )
+            result_guid = USGS.USGS_data.usgs_load_by_station( station, date_from, date_to, limit )
 
             for line in result_guid: # you iterate through the list, and print the single lines
                 t = line.split()
@@ -108,7 +156,8 @@ class USGS_data:
                         print( line )
                         sentence_dict = {}
                         sentence_dict.update( {'agency_cd': t[0]} )
-                        sentence_dict.update( {'HydroCode': t[1]} )
+                        # sentence_dict.update( {'HydroCode': t[1]} )
+                        sentence_dict.update( {'site_no': t[1]} )
                         # sentence_dict.update( {'ts_id': '22222'} )
                         sentence_dict.update( {'TSDateTime': t[2]} )
 
@@ -157,19 +206,15 @@ class USGS_data:
 
         return uuid1
 
-
-
     @classmethod
     def ts_by_guid_id(cls, guid_id):
         # cls.__load_data()
         # return cls.__people_data.get(person_id)
         #return None
 
-        ts = USGS.USGS_data.ts_by_guid_id(guid_id)
+        ts = USGS.USGS_data.ts_by_guid_id( guid_id )
 
         return ts
-
-
 
     @classmethod
     def all_ts11(cls, limit=None):

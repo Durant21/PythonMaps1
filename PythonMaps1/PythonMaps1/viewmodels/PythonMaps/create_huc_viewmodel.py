@@ -1,26 +1,25 @@
-from dateutil.parser import parse
-
-from PythonMaps1.data.TSData import TSData
-from PythonMaps1.viewmodels.base_viewmodel import ViewModelBase
+from PythonMaps1.data.PythonMaps.HUCs import HUCs
+from PythonMaps1.viewmodels.PythonMaps.base_viewmodel import ViewModelBase
 
 
-class CreateTSViewModel( ViewModelBase ):
+class CreateHucViewModel( ViewModelBase ):
     def __init__(self, data_dict):
         super().__init__()
         self.data_dict = data_dict
-        self.TSData = None
+        self.HUCs = None
 
     def compute_details(self):
 
         # teacherId = self.data_dict.get('teacherId', None)
         # if teacherId:
         #     teacherId = parse(teacherId)
-        ts_id = self.data_dict.get( 'ts_id' )
-        agency_cd = self.data_dict.get('agency_cd')
-        HydroCode = self.data_dict.get('HydroCode' )
-        TSDateTime = self.data_dict.get( 'TSDateTime', -1 )
-        TSValue = self.data_dict.get( 'TSValue' )
-        uuid1 = self.data_dict.get('uuid1')
+        huc_id = self.data_dict.get( 'huc_id' )
+        state1 = self.data_dict.get('state1')
+        state2 = self.data_dict.get('state2' )
+        # huc_name = self.data_dict.get( 'TSDateTime', -1 )
+        huc_name = self.data_dict.get('huc_name')
+        desc = self.data_dict.get( 'desc' )
+        # uuid1 = self.data_dict.get('uuid1')
         # Qualified = self.data_dict.get('Qualified')
         # Param = self.data_dict.get('Param')
         # TS_duplcts = self.data_dict.get( 'TS_duplcts' )
@@ -39,8 +38,8 @@ class CreateTSViewModel( ViewModelBase ):
 
         # if not teacherId:
         #     self.errors.append("teacherId is a required field.")
-        if not HydroCode:
-            self.errors.append("HydroCode is a required field.")
+        if not huc_name:
+            self.errors.append("Huc_Name is a required field.")
         # if not TSDateTime:
         #     self.errors.append("TSDateTime is a required field.")
         # if TSValue is None:
@@ -53,34 +52,14 @@ class CreateTSViewModel( ViewModelBase ):
         #     self.errors.append("Year must be non-negative.")
 
         if not self.errors:
-            tsdata = TSData(
-                    # brand=brand,
-                    # name=name,
-                    # damage=damage,
-                    # image=image,
-                    # price=price,
-                    # year=year,
-                    # last_seen=last_seen,
-                    # id=id
-
-            ts_id=ts_id,
-            agency_cd=agency_cd,
-            HydroCode=HydroCode,
-            # TSDateTime=TSDateTime.isoformat(),
-            TSDateTime=TSDateTime,
-            TSValue=TSValue,
-            uuid1=uuid1
-            # Qualified=Qualified,
-            # Param=Param,
-            # TS_duplcts=TS_duplcts,
-            # TSTypeID=TSTypeID,
-            # FeatureID=FeatureID,
-            # TSRemarks=TSRemarks,
-            # TSComments=TSComments,
-            # BaseVsEvent=BaseVsEvent,
-            # Transferable=Transferable,
-            # source1=source1
+            hucs = HUCs(
+                huc_id=huc_id,
+                state1=state1,
+                state2=state2,
+                # TSDateTime=TSDateTime.isoformat(),
+                huc_name=huc_name,
+                desc=desc,
             )
-            self.TSData = tsdata
+            self.HUCs = hucs
 
             # id, brand, name, damage, image, price, year, last_seen

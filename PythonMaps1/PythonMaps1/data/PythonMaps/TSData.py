@@ -1,8 +1,7 @@
 import uuid
 import sqlalchemy
-import datetime
 
-from PythonMaps1.data.sqlalchemy_base import SqlAlchemyBase
+from PythonMaps1.data.PythonMaps.sqlalchemy_base import SqlAlchemyBase
 
 
 class TSData(SqlAlchemyBase):
@@ -17,6 +16,7 @@ class TSData(SqlAlchemyBase):
     ts_id = sqlalchemy.Column( sqlalchemy.String, primary_key=True, default=lambda: str( uuid.uuid4() ) )
     agency_cd = sqlalchemy.Column( sqlalchemy.String )
     HydroCode = sqlalchemy.Column( sqlalchemy.String )
+    site_no = sqlalchemy.Column( sqlalchemy.String )
     TSDateTime = sqlalchemy.Column(sqlalchemy.DateTime, index=True)
     TSValue=sqlalchemy.Column( sqlalchemy.FLOAT )
     uuid1 = sqlalchemy.Column( sqlalchemy.String )
@@ -56,6 +56,7 @@ class TSData(SqlAlchemyBase):
             'ts_id': self.ts_id,
             'agency_cd': self.agency_cd,
             'HydroCode': self.HydroCode,
+            'site_no': self.site_no,
             'TSDateTime': self.TSDateTime.isoformat(),
             'TSValue': self.TSValue,
             'uuid1': self.uuid1,

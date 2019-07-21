@@ -1,8 +1,6 @@
-from PythonMaps1.DAL import stations as DAL_stations
-from PythonMaps1.viewmodels.create_station_viewmodel import CreateStationViewModel
-from PythonMaps1.data.db_factory import DbSessionFactory
-from PythonMaps1.DAL.stations import stations_data
-from PythonMaps1.DAL import stations as stations
+from PythonMaps1.DAL.PythonMaps import stations as DAL_stations
+from PythonMaps1.viewmodels.PythonMaps.create_station_viewmodel import CreateStationViewModel
+from PythonMaps1.DAL.PythonMaps.stations import stations_data
 import uuid
 
 class BLL_stations:

@@ -1,8 +1,5 @@
 from pyramid.view import view_config
-from PythonMaps1.data.repository_stations import Repository_stations
-from PythonMaps1.BLL.HUCs import hucs_data
-from PythonMaps1.data.repository_station_data import Repository_station_data
-from PythonMaps1.data.repository_timeseries_data import Repository_timeseries_data
+from PythonMaps1.BLL.PythonMaps.HUCs import hucs_data
 from pyramid.request import Request
 from pyramid.response import Response
 

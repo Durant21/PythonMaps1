@@ -1,29 +1,27 @@
-from dateutil.parser import parse
-
-from PythonMaps1.data.HUCs import HUCs
-from PythonMaps1.viewmodels.base_viewmodel import ViewModelBase
+from PythonMaps1.data.PythonMaps.stations import Stations
+from PythonMaps1.viewmodels.PythonMaps.base_viewmodel import ViewModelBase
 
 
-class CreateHucViewModel( ViewModelBase ):
+class CreateStationViewModel( ViewModelBase ):
     def __init__(self, data_dict):
         super().__init__()
         self.data_dict = data_dict
-        self.HUCs = None
+        self.Stations = None
 
     def compute_details(self):
 
         # teacherId = self.data_dict.get('teacherId', None)
         # if teacherId:
         #     teacherId = parse(teacherId)
-        huc_id = self.data_dict.get( 'huc_id' )
-        state1 = self.data_dict.get('state1')
-        state2 = self.data_dict.get('state2' )
+        station_id = self.data_dict.get( 'station_id' )
+        OrganizationIdentifier = self.data_dict.get('OrganizationIdentifier')
+        OrganizationFormalName = self.data_dict.get('OrganizationFormalName' )
         # huc_name = self.data_dict.get( 'TSDateTime', -1 )
-        huc_name = self.data_dict.get('huc_name')
-        desc = self.data_dict.get( 'desc' )
-        # uuid1 = self.data_dict.get('uuid1')
-        # Qualified = self.data_dict.get('Qualified')
-        # Param = self.data_dict.get('Param')
+        MonitoringLocationTypeName = self.data_dict.get('MonitoringLocationTypeName')
+        HUCEightDigitCode = self.data_dict.get( 'HUCEightDigitCode' )
+        LatitudeMeasure = self.data_dict.get('LatitudeMeasure')
+        LongitudeMeasure = self.data_dict.get('LongitudeMeasure')
+        ProviderName = self.data_dict.get('ProviderName')
         # TS_duplcts = self.data_dict.get( 'TS_duplcts' )
         # TSTypeID = self.data_dict.get( 'TSTypeID' )
         # FeatureID = self.data_dict.get( 'FeatureID' )
@@ -35,13 +33,10 @@ class CreateHucViewModel( ViewModelBase ):
 
 
 
-        # last_seen =  self.data_dict.get( 'last_seen', -1 )
-
-
         # if not teacherId:
         #     self.errors.append("teacherId is a required field.")
-        if not huc_name:
-            self.errors.append("Huc_Name is a required field.")
+        if not LatitudeMeasure:
+            self.errors.append("LatitudeMeasure is a required field.")
         # if not TSDateTime:
         #     self.errors.append("TSDateTime is a required field.")
         # if TSValue is None:
@@ -54,14 +49,17 @@ class CreateHucViewModel( ViewModelBase ):
         #     self.errors.append("Year must be non-negative.")
 
         if not self.errors:
-            hucs = HUCs(
-                huc_id=huc_id,
-                state1=state1,
-                state2=state2,
+            stations = Stations(
+                station_id=station_id,
+                OrganizationIdentifier=OrganizationIdentifier,
+                OrganizationFormalName=OrganizationFormalName,
                 # TSDateTime=TSDateTime.isoformat(),
-                huc_name=huc_name,
-                desc=desc,
+                MonitoringLocationTypeName=MonitoringLocationTypeName,
+                HUCEightDigitCode=HUCEightDigitCode,
+                LatitudeMeasure=LatitudeMeasure,
+                LongitudeMeasure=LongitudeMeasure,
+                ProviderName=ProviderName,
             )
-            self.HUCs = hucs
+            self.Stations = stations
 
             # id, brand, name, damage, image, price, year, last_seen

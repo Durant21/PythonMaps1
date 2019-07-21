@@ -3,7 +3,7 @@ import PythonMaps1
 import sqlalchemy
 import sqlalchemy.orm
 
-from PythonMaps1.data.sqlalchemy_base import SqlAlchemyBase
+from PythonMaps1.data.PythonMaps.sqlalchemy_base import SqlAlchemyBase
 
 
 class DbSessionFactory:

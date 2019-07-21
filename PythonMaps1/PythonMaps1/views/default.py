@@ -11,6 +11,6 @@ def about_view(request):
     return {'project': 'PythonMaps1'}
 
 
-@view_config(route_name='testko', renderer='../templates/template6.pt')
+@view_config(route_name='testko', renderer='../templates/PythonMaps/template_DataLoader.pt')
 def ko_view(request):
     return {'project': 'PythonMaps1'}

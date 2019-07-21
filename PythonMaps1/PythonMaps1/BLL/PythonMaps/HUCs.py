@@ -1,6 +1,6 @@
-from PythonMaps1.DAL import HUCs as DAL_hucs
-from PythonMaps1.viewmodels.create_huc_viewmodel import CreateHucViewModel
-from PythonMaps1.DAL.HUCs import Repository
+from PythonMaps1.DAL.PythonMaps import HUCs as DAL_hucs
+from PythonMaps1.viewmodels.PythonMaps.create_huc_viewmodel import CreateHucViewModel
+from PythonMaps1.DAL.PythonMaps.HUCs import Repository
 
 
 class hucs_data:
@@ -12,7 +12,6 @@ class hucs_data:
         # stations=list(cls.__stations_data.values())
         hucs = DAL_hucs.hucs_data.all_hucs_csv(limit=limit)
         return hucs
-
 
     @classmethod
     def load_hucs_into_DB_from_file(cls, limit=None):
@@ -52,7 +51,6 @@ class hucs_data:
                 print( 'Could not save HUC data' )
 
         return lst_hucs
-
 
     @classmethod
     def hucs_by_state(cls, state_name,limit=None):

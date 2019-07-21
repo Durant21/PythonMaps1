@@ -1,9 +1,8 @@
 
 # !/usr/bin/python
 import psycopg2
-# from config1a import config11
-
-
+from PythonMaps1.config1a import config11
+from PythonMaps1.DAL.PythonMaps.Postgres import Postgres_data
 
 def connect():
     """ Connect to the PostgreSQL database server """
@@ -60,8 +59,25 @@ def get_vendors():
         if conn is not None:
             conn.close()
 
+def get_councilors():
+    Postgres_data.get_councilors(1)
+    #get_councilors()
+
+
+def get_timeseries():
+    Postgres_data.get_timeseries(1,tsdatetime=None);
+    #get_councilors()
+
+
+def create_timeseries():
+    Postgres_data.insert_timeseries( 14, '2002', );
+    #get_councilors()
+
 
 if __name__ == '__main__':
     # connect()
-    get_vendors()
+    #get_vendors()
+    # get_councilors()
+    get_timeseries()
+    # create_timeseries()
 

@@ -1,11 +1,8 @@
-
-import csv
 import os
 import uuid
 
-from PythonMaps1.data.db_factory import DbSessionFactory
-from PythonMaps1.data.HUCs import HUCs
-from dateutil.parser import parse
+from PythonMaps1.data.PythonMaps.db_factory import DbSessionFactory
+from PythonMaps1.data.PythonMaps.HUCs import HUCs
 
 
 class Repository:
@@ -91,7 +88,7 @@ class hucs_data:
 
         file = os.path.join(
             os.path.dirname( __file__ ),
-            '../data/HUCs_csv.csv'
+            '../../data/PythonMaps/HUCs_csv.csv'
         )
 
         with open( file, "r" ) as f:

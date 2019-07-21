@@ -4,10 +4,9 @@ import os
 import uuid
 import requests
 from bs4 import BeautifulSoup as bs
-from PythonMaps1.data.db_factory import DbSessionFactory
-from PythonMaps1.data.stations import Stations
+from PythonMaps1.data.PythonMaps.db_factory import DbSessionFactory
 
-from PythonMaps1.data.stations import Stations
+from PythonMaps1.data.PythonMaps.stations import Stations
 
 
 class stations_data:

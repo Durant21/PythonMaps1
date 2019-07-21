@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Data Loader</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -756,13 +756,44 @@
                     </tr>
 
                 </table>
+                <table border="1" aria-valuenow="" align="center" style="width: 100%; height: 44px;">
+                    <tr>
+                        <td width="14%">
+                            <label id="lblCount"></label>
+                            <!--?<button type="button" class="btn btn-success" onclick="load_usgs_timeseries_by_huc()">Validate</button>-->
+                            <button type="button" class="btn btn-success" onclick="validate()">Validate1</button>
+                        </td>
+                        <td width="14%">
+
+                        </td>
+                        <td width="14%">
+
+                        </td>
+                        <td width="14%">
+                            <!--?<label >timeseries</label>-->
+
+                        </td>
+                        <td width="14%">
+
+                        </td>
+                        <td width="14%">
+                            <button type="button" class="btn btn-success" onclick="load_usgs_timeseries_by_huc()">Transfer</button>
+
+                        </td>
+                        <td width="14%">
+
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
 
 
   </div>
 </div><br>
-
+-------
+<input type="hidden" id="uuid" name="uuid" value="9999">
+-------
 <footer class="container-fluid text-center">
   <p>Footer Text</p>
 </footer>
@@ -1090,11 +1121,14 @@
 
                 jsonObject = data;
 
-                var  t,u,lat, long;
+                var  t,u,lat, long, uuid;
                 u = 0;
                     for (var i = 0; i < jsonObject.length; i++) {
                         lat  = jsonObject[i]["latitude"];
                         long = jsonObject[i]["longitude"];
+                        uuid = jsonObject[i]["uuid1"];
+                        var element = document.getElementById('uuid');
+                        element.innerText = uuid;
 
                         jQuery("#grid_ts").jqGrid('addRowData', i + 1, jsonObject[i])
                         u = u + 1;
@@ -1115,6 +1149,166 @@
 
         return s;
     }
+
+
+    function validate() {
+        var s = "not done";
+
+        //rdo_hucs
+        var ctl_checked = '';
+        var rdo_hucs = document.getElementById('rdo_hucs');
+        var rdo_sites = document.getElementById('rdo_sites');
+
+        if (rdo_hucs.checked == true) {
+            ctl_checked = 'hucs';
+
+        } else if (rdo_sites.checked == true) {
+            ctl_checked = 'sites';
+
+        }
+
+        var lblCount = document.getElementById('lblCount');
+
+        //var strSiteIDs = $("#ddlHUCs option:selected").val();
+
+        var strDateFrom = $("#txtDateFrom").val();
+        var strDateTo = $("#txtDateTo").val();
+
+        if (strDateFrom == '') {
+            alert("Please specify a date range");
+            return;
+        }
+
+        if (strDateTo == '') {
+            alert("Please specify a date range");
+            return;
+        }
+
+
+        var u = getUrlBase() + "/api/usgs";
+
+
+        var grid = jQuery("#grid_ts").jqGrid({
+            // datatype: "json",
+            // contentType: "application/json; charset=utf-8",
+            width: 1125,
+            //scrollerbar: true,
+            height: 300,
+            colNames: ['ts_id','agency_cd','HydroCode','TDDataTime','TSValue','uuid1'],
+            colModel: [
+                { name: 'ts_id', index: 'ts_id', width: 100, align: 'right'},
+                { name: 'agency_cd', index: 'agency_cd', width: 100, align: 'right'},
+                { name: 'HydroCode', index: 'HydroCode', width: 100, align: 'right'},
+                { name: 'TDDataTime', index: 'TDDataTime', width: 100, align: 'right'},
+                { name: 'TSValue', index: 'TSValue', width: 100, align: 'right'},
+                { name: 'uuid1', index: 'uuid1', width: 100, align: 'right'}
+                ],
+            multiselect: false,
+            ondblClickRow: function(stationid) {
+                // //alert("You double click row with stationid: "+stationid);
+                // var data = jQuery("#grid_stations").jqGrid('getRowData',stationid);
+                // //alert("Status ->"+data.stationid);
+                // var _lat = data.SiteLatitude;
+                // var _lon = data.SiteLongitude;
+                // centerAndZoom(_lat,_lon);
+                },
+            caption: "Timeseries Data"
+        })
+
+        var sData = '';
+        if (ctl_checked == 'hucs') {
+
+            strHUCs = $("#ddlHUCs").val();
+            if (strHUCs) {
+                strHUCs1 = strHUCs.join();
+            } else {
+                alert("Please specify one or more HUCs");
+                return;
+            }
+
+            sUrl =  "http://localhost:6543/api/usgs"
+            sData =  "{\"huc_id\": \"" + strHUCs1 + "\",\"date_from\": \"" + strDateFrom + "\",\"date_to\": \"" + strDateTo + "\"}"
+
+        } else if (ctl_checked == 'sites') {
+
+            strSiteIDs = $("#ddlSites").val();
+            if (strSiteIDs) {
+                strSiteIDs = strSiteIDs.join();
+            } else {
+                alert("Please specify one or more Sites");
+                return;
+            }
+
+            sData =  "{\"station_id\": \"" + strSiteIDs + "\",\"date_from\": \"" + strDateFrom + "\",\"date_to\": \"" + strDateTo + "\"}"
+            sUrl = "http://localhost:6543/api/usgs4"
+        };
+
+            var element = document.getElementById('uuid');
+            alert(element.innerText);
+            var strUUID = element.innerText;
+            sData =  "{\"uuid\": \"" + strUUID + "\"}"
+            sUrl = "http://localhost:6543/api/usgs4"
+
+        $.ajax({
+            type: "POST",
+            url: sUrl,
+            //data: "{'state2': 'MN'}",
+            //data: "{\"huc_id\": \"222222,333333,444444,555555\"}",
+            //data: "{\"huc_id\": \"" + strHUCs1 + "\"}",
+            //data: "{\"huc_id\": \"" + strHUCs1 + "\",\"date_from\": \"" + strDateFrom + "\"}",
+            data: sData,
+
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+
+            beforeSend: function () {
+                //SetBusy();
+                $('#grid_ts').jqGrid('clearGridData');
+
+                document.getElementById("loader").style.display = "block";
+                lblCount.innerText = "searching...";
+
+            },
+
+            success: function (data) {
+                //myViewModel.dbTSByHUC(data);
+
+                //alert(data.length);
+
+
+                lblCount.innerText = data.length + " records";
+
+                jsonObject = data;
+
+                var  t,u,lat, long, uuid;
+                u = 0;
+                    for (var i = 0; i < jsonObject.length; i++) {
+                        lat  = jsonObject[i]["latitude"];
+                        long = jsonObject[i]["longitude"];
+                        uuid = jsonObject[i]["uuid1"];
+                        var element = document.getElementById('uuid');
+                        element.innerText = uuid;
+
+                        jQuery("#grid_ts").jqGrid('addRowData', i + 1, jsonObject[i])
+                        u = u + 1;
+                    }
+                s = "done";
+
+                    document.getElementById("loader").style.display = "none";
+            },
+
+            error: function (err) {
+                //SetNotBusy();
+                alert("18aaError : " + err.status + "   " + err.statusText);
+                lblCount.innerText = 0 + " records";
+                document.getElementById("loader").style.display = "none";
+            }
+
+        });
+
+        return s;
+    }
+
 </script>
 
 <script>

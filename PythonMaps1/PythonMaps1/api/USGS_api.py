@@ -27,6 +27,21 @@ def all_ts(_):
     return ts
 
 
+@view_config(route_name='usgs4_api',
+             request_method='POST',
+             accept='application/json',
+             renderer='json')
+def validate_ts(request: Request):
+    # matchdict = request.matchdict
+    # guid_id = request.matchdict.get("uuid")
+    hucs_list = request.json_body
+    guid_id = hucs_list["uuid"]
+    # guid_id2 = request.matchdict['uuid']
+
+    ts = USGS_data.validate(guid_id,limit=25)
+    return ts
+
+
 @view_config(route_name='usgs1_api',
              request_method='GET',
              renderer='json')
@@ -39,6 +54,7 @@ def get_usgs_timeseries_by_guid(request: Request):
         return Response(status=404,json_body={'error:': msg})
 
     return ts
+
 
 @view_config(route_name='usgs_api',
              request_method='POST',

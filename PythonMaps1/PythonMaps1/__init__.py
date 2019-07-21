@@ -1,13 +1,12 @@
 from pyramid.config import Configurator
-from pyramid.events import NewRequest
 
 from pyramid.renderers import JSON
 
 # Following references needed for Sqlite creation
-from PythonMaps1.data.TSData import TSData
-from PythonMaps1.data.HUCs import HUCs
-from PythonMaps1.data.stations import Stations
-from PythonMaps1.data.db_factory import DbSessionFactory
+from PythonMaps1.data.PythonMaps.TSData import TSData
+from PythonMaps1.data.PythonMaps.HUCs import HUCs
+from PythonMaps1.data.PythonMaps.stations import Stations
+from PythonMaps1.data.PythonMaps.db_factory import DbSessionFactory
 # from PythonMaps1.data.repository import Repository
 
 def main(global_config, **settings):
@@ -27,7 +26,9 @@ def main(global_config, **settings):
         config.add_route( 'stations3_api', '/api/stations_by_huc' )
         config.add_route( 'usgs_api', '/api/usgs' )                     # TS by huc
         config.add_route( 'usgs2_api', '/api/usgs2' )                   # TS by station
+        config.add_route( 'usgs4_api', '/api/usgs4' )                   # TS Validate
         config.add_route( 'usgs1_api', '/api/usgs1/{guid_id}' )
+        config.add_route( 'usgs3_api', '/api/usgs' )                    # unknown
 
         config.add_route( 'hucs_api', '/api/hucs' )
         config.add_route( 'hucs1_api', '/api/load_hucs' )
@@ -43,6 +44,8 @@ def init_db(config):
 
     DbSessionFactory.global_init(db_file)
 
+    # database_ini = settings.get('database_ini')
+    # DbSessionFactory.global_init(database_ini)
 
 def configure_renderers(config):
     json_renderer = JSON(indent=4)
