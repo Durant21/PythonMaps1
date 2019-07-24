@@ -3,6 +3,7 @@ import uuid
 from PythonMaps1.DAL.PythonMaps import USGS
 from PythonMaps1.DAL.PythonMaps.TS import Repository
 from PythonMaps1.viewmodels.PythonMaps.create_ts_viewmodel import CreateTSViewModel
+from PythonMaps1.viewmodels.PythonMaps.update_ts_viewmodel import UpdateTSViewModel
 from PythonMaps1.data.PythonMaps.db_factory import DbSessionFactory
 from PythonMaps1.data.PythonMaps.TSData import TSData
 from PythonMaps1.DAL.PythonMaps.Postgres import Postgres_data
@@ -43,14 +44,29 @@ class USGS_data:
             tsvalue = TSData.TSValue
             site_no = TSData.site_no
             tsdatetime = TSData.TSDateTime
+            ts_id = TSData.ts_id
             tsrecs = Postgres_data.get_timeseries(site_no=site_no,tsdatetime=tsdatetime)
             print(str(tsrecs.__len__()) + " recs")
 
             if (tsrecs.__len__() == 0):
                 doc_name = 'a doc name'
-                task = (guid_id)
-                Repository.update_ts(task)
+                # task = (guid_id)
+                # Repository.update_ts(task)
+                ts_data = {"ts_id": ts_id,
+                           "Transferable": "true"}
+                # ts_data.update({"ts_id",ts_id})
+                vm = UpdateTSViewModel( ts_data, ts_id )
+                vm.compute_details()
+                if vm.errors:
+                    msg = "400 " + vm.error_msg
+                    print(msg)
+                try:
+                    Repository.update_timeseries(vm.TSData)
+                    msg = "204 TS updated successfully."
+                except:
+                    msg = "400 Could not update TS."
 
+                print(msg)
 
         #
         # sql = "SELECT * from public.council5;"

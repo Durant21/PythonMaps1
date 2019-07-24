@@ -46,6 +46,27 @@ class Repository:
             print( e )  # for the repr
         # ...     print 'My exception occurred, value:', e.value
 
+
+
+    @classmethod
+    def update_timeseries(cls, ts_rec):
+        # key = person_data['id']
+        # cls.__people_data[key] = person_data
+        #
+        # return person_data
+        # id,name,title,company,email,url1,url2,description, address, city,state,img1
+
+        session = DbSessionFactory.create_session()
+
+        db_ts = session.query(TSData).filter(TSData.ts_id == ts_rec.ts_id).first()
+        # db_car.last_seen = parse(car_data.last_seen)
+        db_ts.Transferable = 'true'
+
+        session.commit()
+
+        return db_ts
+
+
     @classmethod
     def update_ts(cls,task):
         working_folder = os.path.dirname(PythonMaps1.__file__)
